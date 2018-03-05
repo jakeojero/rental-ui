@@ -2,11 +2,33 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SharedModule } from '../core/shared/shared.module';
+import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RouterModule } from '@angular/router';
+import { RoutingModule } from '../routing/routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    RouterModule,
+    RoutingModule
   ],
-  declarations: [HomeComponent, NavbarComponent]
+  declarations: [
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent,
+  ],
+  exports: [
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent
+  ]
 })
 export class FeaturesModule { }
