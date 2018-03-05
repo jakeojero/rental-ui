@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<mat-card>
+  <mat-card-title>
+    Login
+  </mat-card-title>
+  <mat-card-content>
+      <form [formGroup]="loginForm">
+    <div style="text-align:center;">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">
+            {{getUsernameError()}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password">
+          <mat-error *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+            {{getPasswordError()}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button>Login</button>
+      </div>
+    </div>
+  </form>
+  </mat-card-content>
+</mat-card>
