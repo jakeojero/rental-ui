@@ -23,5 +23,10 @@ import { SharedModule } from './core/shared/shared.module';
 })
 export class AppModule { }
 
+
 // ng g c features/<component_name>
+
+
+
+ // ng g c features/<component_name>
 
