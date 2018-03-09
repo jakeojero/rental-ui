@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { LoginUser } from '../../core/shared/models/LoginUser';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,13 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
+  errorMessage: string;
+  loginUser: LoginUser;
   loginForm: FormGroup;
   passwordPattern = /^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder,
+                           private loginService: LoginService) {
     this.loginForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordPattern)]],
@@ -30,6 +35,26 @@ export class LoginComponent implements OnInit {
         '';
   }
   ngOnInit() {
+  }
+
+  submitLogin(): void {
+    if (this.loginForm.dirty && this.loginForm.valid) {
+
+      // Is there a quicker way to map this?
+      this.loginUser.username = this.loginForm.get('username').value();
+      this.loginUser.password = this.loginForm.get('password').value();
+
+      this.loginService.loginUser(this.loginUser)
+      .subscribe(
+        () => this.onSaveComplete(),
+        (error: any) => this.errorMessage = <any>error
+      );
+    }
+  }
+
+  onSaveComplete(): void {
+    this.loginForm.reset();
+    // route to home page
   }
 
 }
