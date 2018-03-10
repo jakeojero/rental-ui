@@ -25,7 +25,7 @@ export class LoginService {
     myHeaders.append('Authorization', `Basic ${base64Credentials}`);
     const options = new RequestOptions({headers: myHeaders });
 
-    return this.http.get(this.baseUrl + 'auth/login')
+    return this.http.get(this.baseUrl + 'auth/login', options)
       .map(this.extractLoginUser)
       .do(data => console.log(''))
       .catch(this.handleError);
