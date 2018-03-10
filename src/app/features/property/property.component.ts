@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../../core/shared/models/Property';
 
 @Component({
@@ -8,7 +8,7 @@ import { Property } from '../../core/shared/models/Property';
 })
 export class PropertyComponent implements OnInit {
 
-  property: Property;
+  @Input() property: Property;
   constructor() { }
 
   ngOnInit() {
