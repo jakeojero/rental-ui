@@ -1,3 +1,5 @@
-<div *ngFor="" >
+<!-- Search component goes here -->
 
-</div>
+<mat-card *ngFor="let property of properties">
+<app-property [property]="property"></app-property>
+</mat-card>
