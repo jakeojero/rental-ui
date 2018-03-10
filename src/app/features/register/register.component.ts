@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  // TODO: Generalize the validator into a shared helper component and make calls to that.
   getEmailError() {
     return this.registerForm.get('email').hasError('required') ? 'Required' :
       this.registerForm.get('email').hasError('email') ? 'Not a valid email' :

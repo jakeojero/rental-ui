@@ -11,7 +11,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/RX';
 
 
-const url = '/';  // need URL
+const url = 'https://hidden-brook-77758.herokuapp.com/auth';
 
 @Injectable()
 export class RegisterService {

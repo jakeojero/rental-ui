@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
 import { RoutingModule } from '../routing/routing.module';
+import { PropertyComponent } from './property/property.component';
+import { PropertylistComponent } from './propertylist/propertylist.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
@@ -22,6 +25,9 @@ import { RoutingModule } from '../routing/routing.module';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    PropertyComponent,
+    PropertylistComponent,
+    SearchComponent,
   ],
   exports: [
     HomeComponent,

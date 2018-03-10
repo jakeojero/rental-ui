@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/RX';
 
-const url = '/';  // need URL
+const url = 'https://hidden-brook-77758.herokuapp.com/auth';
 
 @Injectable()
 export class LoginService {
@@ -20,14 +20,14 @@ export class LoginService {
   // Post
   loginUser(user: LoginUser): Observable<LoginUser> {
     return this.http.post(this.baseUrl + '/login', user)
-    .map(this.extractLoginrUser)
+    .map(this.extractLoginUser)
     .do(data => console.log(''))
     .catch(this.handleError);
 
     // Need to do things to return a token as an authenticated/authorized user?
   }
 
-  extractLoginrUser(response: Response) {
+  extractLoginUser(response: Response) {
     const body = response.json();
     return body.data || {};
 
