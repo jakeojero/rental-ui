@@ -13,13 +13,17 @@ import { PropertylistComponent } from './propertylist/propertylist.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
+import { LoginService } from './login/login.service';
+import { RegisterService } from './register/register.service';
+import { HttpModule, Http } from '@angular/http';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
-    RoutingModule
+    RoutingModule,
+    HttpModule
   ],
   declarations: [
     HomeComponent,
@@ -39,6 +43,10 @@ import { PropertydetailsComponent } from './propertydetails/propertydetails.comp
     FooterComponent,
     LoginComponent,
     RegisterComponent
+  ],
+  providers: [
+    LoginService,
+    RegisterService
   ]
 })
 export class FeaturesModule { }

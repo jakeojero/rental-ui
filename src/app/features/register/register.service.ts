@@ -9,37 +9,31 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/RX';
+import { environment } from '../../../environments/environment';
 
-
-const url = 'https://hidden-brook-77758.herokuapp.com/auth';
+const url = environment.apiURL;
 
 @Injectable()
 export class RegisterService {
-  private baseUrl = ''; // URL to API
+  private baseUrl = url;
 
   constructor(private http: Http) { }
 
   // Post
   registerUser(user: RegisterUser): Observable<RegisterUser> {
-    return this.http.post(this.baseUrl + '/register', user)
-    .map(this.extractRegisterUser)
-    .do(data => console.log(''))
-    .catch(this.handleError);
-
-    // Need to do things to return a token as an authenticated/authorized user?
+    return this.http.post(this.baseUrl + 'auth/register', user)
+      .map(this.extractRegisterUser)
+      .do(data => console.log(''))
+      .catch(this.handleError);
   }
 
   extractRegisterUser(response: Response) {
     const body = response.json();
     return body.data || {};
-
-    // This is generic, maybe need to be made more RegisterUser specific?
   }
 
   handleError(error: Response): Observable<any> {
     console.error(error);
     return Observable.throw('Server Error');
   }
-
-
 }

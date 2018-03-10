@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Property } from '../../core/shared/models/Property';
 @Component({
   selector: 'app-propertylist',
   templateUrl: './propertylist.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertylistComponent implements OnInit {
 
+  properties: Property[];
   constructor() { }
 
   ngOnInit() {
+    // Load properties
   }
 
 }

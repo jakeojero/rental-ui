@@ -9,29 +9,37 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/RX';
+import { environment } from '../../../environments/environment';
 
-const url = 'https://hidden-brook-77758.herokuapp.com/auth';
+const url = environment.apiURL;
 
 @Injectable()
 export class LoginService {
-  private baseUrl = ''; // URL to API
+  private baseUrl = url;
   constructor(private http: Http) { }
 
-  // Post
   loginUser(user: LoginUser): Observable<LoginUser> {
-    return this.http.post(this.baseUrl + '/login', user)
-    .map(this.extractLoginUser)
-    .do(data => console.log(''))
-    .catch(this.handleError);
+    const myHeaders = new Headers();
+    // let myParams = new URLSearchParams();
+    const base64Credentials = btoa(`${user.username}:${user.password}`);
+    myHeaders.append('Authorization', `Basic ${base64Credentials}`);
+    const options = new RequestOptions({headers: myHeaders });
+
+    return this.http.get(this.baseUrl + 'auth/login')
+      .map(this.extractLoginUser)
+      .do(data => console.log(''))
+      .catch(this.handleError);
 
     // Need to do things to return a token as an authenticated/authorized user?
   }
 
   extractLoginUser(response: Response) {
-    const body = response.json();
-    return body.data || {};
-
-    // This is generic, maybe need to be made more LoginUser specific?
+    if (response.ok) {
+      const token = response.headers.get('X-Auth-Token');
+      window.localStorage.setItem('token', token);
+    } else {
+      // this.handleError();
+    }
   }
 
   handleError(error: Response): Observable<any> {

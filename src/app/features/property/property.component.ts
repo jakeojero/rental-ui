@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Property } from '../../core/shared/models/Property';
 
 @Component({
   selector: 'app-property',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyComponent implements OnInit {
 
+  property: Property;
   constructor() { }
 
   ngOnInit() {

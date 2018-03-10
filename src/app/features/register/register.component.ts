@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { RegisterUser } from '../../core/shared/models/RegisterUser';
 import { RegisterService } from './register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
   passwordPattern = /^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder,
-    private registerService: RegisterService) {
+    private registerService: RegisterService,
+    private router: Router) {
     this.registerForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordPattern)]],
@@ -49,9 +51,9 @@ export class RegisterComponent implements OnInit {
   submitRegistration(): void {
     if (this.registerForm.dirty && this.registerForm.valid) {
       this.registerUser = new RegisterUser(
-        this.registerForm.get('username').value(),
-        this.registerForm.get('password').value(),
-        this.registerUser.email = this.registerForm.get('email').value()
+        this.registerForm.get('username').value,
+        this.registerForm.get('password').value,
+        this.registerForm.get('email').value
       );
 
       this.registerService.registerUser(this.registerUser)
@@ -64,6 +66,6 @@ export class RegisterComponent implements OnInit {
 
   onSaveComplete(): void {
     this.registerForm.reset();
-    // route to home page
+    this.router.navigate(['home']);
   }
 }
