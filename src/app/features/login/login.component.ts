@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
 
   submitLogin(): void {
     if (this.loginForm.dirty && this.loginForm.valid) {
-
-      // Is there a quicker way to map this?
-      this.loginUser.username = this.loginForm.get('username').value();
-      this.loginUser.password = this.loginForm.get('password').value();
+      this.loginUser = new LoginUser(
+        this.loginForm.get('username').value(),
+        this.loginForm.get('password').value()
+      );
 
       this.loginService.loginUser(this.loginUser)
       .subscribe(

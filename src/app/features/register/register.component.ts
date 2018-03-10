@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   passwordPattern = /^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder,
-                           private registerService: RegisterService) {
+    private registerService: RegisterService) {
     this.registerForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordPattern)]],
@@ -48,17 +48,17 @@ export class RegisterComponent implements OnInit {
 
   submitRegistration(): void {
     if (this.registerForm.dirty && this.registerForm.valid) {
-
-      // Is there a quicker way to map this?
-      this.registerUser.username = this.registerForm.get('username').value();
-      this.registerUser.password = this.registerForm.get('password').value();
-      this.registerUser.email = this.registerForm.get('email').value();
+      this.registerUser = new RegisterUser(
+        this.registerForm.get('username').value(),
+        this.registerForm.get('password').value(),
+        this.registerUser.email = this.registerForm.get('email').value()
+      );
 
       this.registerService.registerUser(this.registerUser)
-      .subscribe(
-        () => this.onSaveComplete(),
-        (error: any) => this.errorMessage = <any>error
-      );
+        .subscribe(
+          () => this.onSaveComplete(),
+          (error: any) => this.errorMessage = <any>error
+        );
     }
   }
 
