@@ -3,6 +3,8 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { RegisterUser } from '../../core/shared/models/RegisterUser';
 import { RegisterService } from './register.service';
 import { Router } from '@angular/router';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {XenosError} from '../../core/shared/models/XenosError';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  errorMessage: string;
+  errorMessage: XenosError;
   registerUser: RegisterUser;
   registerForm: FormGroup;
   passwordPattern = /^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/;
@@ -58,14 +60,21 @@ export class RegisterComponent implements OnInit {
 
       this.registerService.registerUser(this.registerUser)
         .subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => this.errorMessage = <any>error
+          (res) => this.onSaveComplete(res),
+          (error: HttpErrorResponse) => this.handleError(error)
         );
     }
   }
 
-  onSaveComplete(): void {
+  onSaveComplete(res): void {
     this.registerForm.reset();
     this.router.navigate(['home']);
+  }
+
+  handleError(response: HttpErrorResponse) {
+
+    // handles an error and casts the message to a xenos error
+    const error = <XenosError>response.error;
+
   }
 }

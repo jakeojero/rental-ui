@@ -8,11 +8,13 @@ import {
   MatDividerModule,
   MatDialogModule,
   MatTooltipModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatIconModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -25,10 +27,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatTooltipModule,
     MatToolbarModule,
+    MatIconModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   declarations: [],
   exports: [CommonModule,
@@ -40,10 +44,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatTooltipModule,
     MatToolbarModule,
+    MatIconModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }

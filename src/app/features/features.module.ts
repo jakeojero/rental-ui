@@ -16,6 +16,7 @@ import { PropertydetailsComponent } from './propertydetails/propertydetails.comp
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
 import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { HttpModule, Http } from '@angular/http';
     SharedModule,
     RouterModule,
     RoutingModule,
-    HttpModule
+    HttpClientModule
   ],
   declarations: [
     HomeComponent,

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Response, Headers, RequestOptions, ResponseContentType } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { RegisterUser } from '../../core/shared/models/RegisterUser';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -17,23 +15,11 @@ const url = environment.apiURL;
 export class RegisterService {
   private baseUrl = url;
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   // Post
-  registerUser(user: RegisterUser): Observable<RegisterUser> {
-    return this.http.post(this.baseUrl + 'auth/register', user)
-      .map(this.extractRegisterUser)
-      .do(data => console.log(''))
-      .catch(this.handleError);
+  registerUser(user: RegisterUser) {
+    return this.httpClient.post(this.baseUrl + 'auth/register', user);
   }
 
-  extractRegisterUser(response: Response) {
-    const body = response.json();
-    return body.data || {};
-  }
-
-  handleError(error: Response): Observable<any> {
-    console.error(error);
-    return Observable.throw('Server Error');
-  }
 }

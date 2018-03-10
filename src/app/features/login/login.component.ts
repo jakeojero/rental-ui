@@ -3,6 +3,8 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { LoginUser } from '../../core/shared/models/LoginUser';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {XenosError} from '../../core/shared/models/XenosError';
 
 @Component({
   selector: 'app-login',
@@ -48,15 +50,22 @@ export class LoginComponent implements OnInit {
 
       this.loginService.loginUser(this.loginUser)
         .subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => this.errorMessage = <any>error
+          (res) => this.onSaveComplete(res),
+          (error: HttpErrorResponse) => this.handleError(error)
         );
     }
   }
 
-  onSaveComplete(): void {
+  onSaveComplete(res): void {
+    window.localStorage.setItem('token', res.headers.get('X-AUTH-TOKEN'));
+    // save user name and roles here which will dictate what you display on a screen
     this.loginForm.reset();
     this.router.navigate(['home']);
   }
 
+  handleError(response: HttpErrorResponse) {
+    const error = <XenosError>response.error;
+    // do error stuff
+    // ex alertService.error(error, '5sec') // i can help with this later
+  }
 }
