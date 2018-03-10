@@ -11,6 +11,8 @@ import { RoutingModule } from '../routing/routing.module';
 import { PropertyComponent } from './property/property.component';
 import { PropertylistComponent } from './propertylist/propertylist.component';
 import { SearchComponent } from './search/search.component';
+import { ProfileComponent } from './profile/profile.component';
+import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
 
 @NgModule({
   imports: [
@@ -28,6 +30,8 @@ import { SearchComponent } from './search/search.component';
     PropertyComponent,
     PropertylistComponent,
     SearchComponent,
+    ProfileComponent,
+    PropertydetailsComponent,
   ],
   exports: [
     HomeComponent,
