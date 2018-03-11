@@ -3,8 +3,9 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { LoginUser } from '../../core/shared/models/LoginUser';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
-import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {XenosError} from '../../core/shared/models/XenosError';
+import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { XenosError } from '../../core/shared/models/XenosError';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(@Inject(FormBuilder) fb: FormBuilder,
     private loginService: LoginService,
-    private router: Router) {
+    private router: Router,
+    private alert: AlertService) {
     this.loginForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -30,8 +32,8 @@ export class LoginComponent implements OnInit {
   getPasswordError() {
     return this.loginForm.get('password').hasError('required') ? 'Required' :
       // this.loginForm.get('password').hasError('pattern') ? 'Must contain letters and numbers' :
-        this.loginForm.get('password').hasError('minlength') ? 'Must contain at least 8 characters' :
-          '';
+      this.loginForm.get('password').hasError('minlength') ? 'Must contain at least 8 characters' :
+        '';
   }
   getUsernameError() {
     return this.loginForm.get('username').hasError('required') ? 'Required' :
@@ -51,12 +53,13 @@ export class LoginComponent implements OnInit {
       this.loginService.loginUser(this.loginUser)
         .subscribe(
           (res) => this.onSaveComplete(res),
-          (error: HttpErrorResponse) => this.handleError(error)
+          (err: HttpErrorResponse) => this.handleError(err)
         );
     }
   }
 
   onSaveComplete(res): void {
+    this.alert.info('Login Successful', 5000, true);
     window.localStorage.setItem('token', res.headers.get('X-AUTH-TOKEN'));
     // save user name and roles here which will dictate what you display on a screen
     this.loginForm.reset();
@@ -64,8 +67,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleError(response: HttpErrorResponse) {
-    const error = <XenosError>response.error;
-    // do error stuff
-    // ex alertService.error(error, '5sec') // i can help with this later
+    if (response.status === 401) {
+      this.alert.error('Invalid login', 5000, false);
+    }
   }
 }

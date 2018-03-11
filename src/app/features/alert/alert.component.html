@@ -1,0 +1,6 @@
+<div *ngFor="let alert of alerts">
+  <div fxFlex="20%"></div>
+  <div fxFlex="60%" fxLayoutAlign="center" class="alert" [ngStyle]="{'background-color':  alert.type === 2 ? '#F66359' : alert.type === 1 ? '#FFAA2C' : alert.type === 0 ? '#6BBD6E' : '' }">
+    {{alert.message}}
+  </div>
+</div>

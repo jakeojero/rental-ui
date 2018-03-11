@@ -24,7 +24,11 @@ export class LoginService {
       'Authorization': `Basic ${base64Credentials}`
     });
 
+<<<<<<< HEAD
     return this.httpClient.get(`${this.baseUrl}auth/login`, {observe: 'response', headers: headers});
+=======
+    return this.httpClient.get(`/api/auth/login`, {observe: 'response', headers: headers});
+>>>>>>> a296dccdb745f32b014093248fc4a1ee5061bada
   }
 
 

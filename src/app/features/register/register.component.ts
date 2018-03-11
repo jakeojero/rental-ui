@@ -5,6 +5,7 @@ import { RegisterService } from './register.service';
 import { Router } from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {XenosError} from '../../core/shared/models/XenosError';
+import {AlertService} from '../alert/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(@Inject(FormBuilder) fb: FormBuilder,
     private registerService: RegisterService,
-    private router: Router) {
+    private router: Router,
+    private alert: AlertService) {
     this.registerForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordPattern)]],
@@ -68,13 +70,15 @@ export class RegisterComponent implements OnInit {
 
   onSaveComplete(res): void {
     this.registerForm.reset();
-    this.router.navigate(['home']);
+    this.alert.info('Registered! Please Log in', 5000, true);
+    this.router.navigate(['login']);
   }
 
   handleError(response: HttpErrorResponse) {
 
     // handles an error and casts the message to a xenos error
     const error = <XenosError>response.error;
+    this.alert.error(error.message, 5000, false);
 
   }
 }

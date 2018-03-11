@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://hidden-brook-77758.herokuapp.com/'
+  apiURL: '/api/'
 };

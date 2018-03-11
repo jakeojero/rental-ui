@@ -23,8 +23,16 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
-
+body {
+  //background-image: url("./images/emoji-background.png");
+  margin: 0;
+  background-image: url("./images/black-thread-light.png");
+}
 .margin-top{
   margin-top: 25px;
+}
+
+.margin-bottom {
+  margin-bottom: 25px;
 }
 

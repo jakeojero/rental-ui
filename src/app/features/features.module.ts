@@ -17,6 +17,8 @@ import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
 import { HttpModule, Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertComponent } from './alert/alert.component';
+import {AlertService} from './alert/alert.service';
 
 @NgModule({
   imports: [
@@ -37,17 +39,20 @@ import { HttpClientModule } from '@angular/common/http';
     SearchComponent,
     ProfileComponent,
     PropertydetailsComponent,
+    AlertComponent,
   ],
   exports: [
     HomeComponent,
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent
   ],
   providers: [
     LoginService,
-    RegisterService
+    RegisterService,
+    AlertService
   ]
 })
 export class FeaturesModule { }
