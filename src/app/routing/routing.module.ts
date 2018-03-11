@@ -6,10 +6,10 @@ import { LoginComponent } from '../features/login/login.component';
 import { RegisterComponent } from '../features/register/register.component';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
