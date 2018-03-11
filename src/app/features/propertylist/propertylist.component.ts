@@ -8,15 +8,21 @@ import { PropertylistService } from './propertylist.service';
 })
 export class PropertylistComponent implements OnInit {
 
+
   properties: Property[] = new Array<Property>();
   property: Property;
   constructor(private propertylistService: PropertylistService) { }
 
   ngOnInit() {
     // Load properties
-    this.propertylistService.getProperties().subscribe(property => {
-      this.properties.push(<Property>property[0]);
+    this.propertylistService.getProperties().subscribe(properties => {
+      this.properties = <Property[]>properties.body;
     });
   }
 
+  getFilteredProperties(filter: string, term: string) {
+    this.propertylistService.getFilteredProperties(filter, term).subscribe(properties => {
+      this.properties = <Property[]>properties.body;
+    });
+  }
 }

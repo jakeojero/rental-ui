@@ -1,3 +1,21 @@
-<p>
-  search works!
-</p>
+<mat-card>
+  <form [formGroup]="searchForm" style="width: 100%">
+    <mat-form-field>
+      <mat-select placeholder="Search By">
+        <mat-option *ngFor="let filter of filters" [value]="filter" formControlName="searchFilter">
+          {{ filter }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.get('searchFilter').invalid && searchForm.get('searchFilter').touched">
+          {{getSearchFilterError()}}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Search Term" formControlName="searchTerm">
+      <mat-error *ngIf="searchForm.get('searchTerm').invalid && searchForm.get('searchTerm').touched">
+          {{getSearchTermError()}}
+        </mat-error>
+    </mat-form-field>
+    <button mat-button (click)="filterSearch()">Filter</button>
+  </form>
+</mat-card>

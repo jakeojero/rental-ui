@@ -25,7 +25,15 @@ export class PropertylistService {
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
     });
 
-    return this.httpClient.get(`/api/properties`, { observe: 'response', headers: headers }).map(res => res.body);
+    return this.httpClient.get(`/api/properties`, { observe: 'response', headers: headers });
+    // Check on this
+  }
+  getFilteredProperties(filter: string, term: string) {
+    const headers = new HttpHeaders({
+      'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
+    });
+
+    return this.httpClient.get(`/api/properties`, { observe: 'response', headers: headers });
     // Check on this
   }
 }

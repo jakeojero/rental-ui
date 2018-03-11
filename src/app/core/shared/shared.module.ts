@@ -9,6 +9,8 @@ import {
   MatDialogModule,
   MatTooltipModule,
   MatToolbarModule,
+  MatRadioModule,
+  MatSelectModule,
   MatIconModule, MatChip, MatChipsModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +31,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatToolbarModule,
     MatIconModule,
     MatChipsModule,
+    MatRadioModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -47,6 +51,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatToolbarModule,
     MatIconModule,
     MatChipsModule,
+    MatRadioModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

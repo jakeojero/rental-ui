@@ -1,5 +1,7 @@
 <!-- Search component goes here -->
-
+<div style="text-align:center">
+  <app-search (filteredSearch)="getFilteredProperties($event)"></app-search>
+</div>
 <mat-card *ngFor="let property of properties">
   <app-property [property]="property"></app-property>
 </mat-card>
