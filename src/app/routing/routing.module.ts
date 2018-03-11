@@ -4,12 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../features/home/home.component';
 import { LoginComponent } from '../features/login/login.component';
 import { RegisterComponent } from '../features/register/register.component';
+import { PropertylistComponent } from '../features/propertylist/propertylist.component';
+import { PropertydetailsComponent } from '../features/propertydetails/propertydetails.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'propertyList', component: PropertylistComponent },
+  { path: 'propertyDetail', component: PropertydetailsComponent },
 ];
 
 @NgModule({

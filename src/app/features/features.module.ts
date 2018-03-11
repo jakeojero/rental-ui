@@ -19,6 +19,7 @@ import { HttpModule, Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './alert/alert.component';
 import {AlertService} from './alert/alert.service';
+import { PropertylistService } from './propertylist/propertylist.service';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import {AlertService} from './alert/alert.service';
   providers: [
     LoginService,
     RegisterService,
-    AlertService
+    AlertService,
+    PropertylistService,
   ]
 })
 export class FeaturesModule { }
