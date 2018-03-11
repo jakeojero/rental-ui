@@ -9,7 +9,7 @@ import { EventEmitter } from 'protractor';
 })
 export class SearchComponent implements OnInit {
 
-  @Output() filteredSearch = new EventEmitter();
+  // @Output() filteredSearch = new EventEmitter();
   searchForm: FormGroup;
   filters = [
     'Address',
@@ -36,8 +36,8 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  filterSearch() {
-    this.filteredSearch.emit('filter', this.searchForm.get('searchFilter').value, this.searchForm.get('searchTerm').value);
-    // Send this up to parent propertylist to refresh properties with filter
-  }
+  // filterSearch() {
+  //   this.filteredSearch.emit('filter', this.searchForm.get('searchFilter').value, this.searchForm.get('searchTerm').value);
+  //   // Send this up to parent propertylist to refresh properties with filter
+  // }
 }
