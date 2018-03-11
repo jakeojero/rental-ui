@@ -19,7 +19,7 @@ export class RegisterService {
 
   // Post
   registerUser(user: RegisterUser) {
-    return this.httpClient.post(this.baseUrl + 'auth/register', user);
+    return this.httpClient.post('/api/auth/register', user);
   }
 
 }
