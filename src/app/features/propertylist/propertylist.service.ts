@@ -28,6 +28,8 @@ export class PropertylistService {
     return this.httpClient.get(`/api/properties`, { observe: 'response', headers: headers });
     // Check on this
   }
+
+  // Implement the search parameter.
   getFilteredProperties(filter: string, term: string) {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`

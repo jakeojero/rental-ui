@@ -1,9 +1,9 @@
 <mat-card>
   <form [formGroup]="searchForm" style="width: 100%">
     <mat-form-field>
-      <mat-select placeholder="Search By">
-        <mat-option *ngFor="let filter of filters" [value]="filter" formControlName="searchFilter">
-          {{ filter }}
+      <mat-select placeholder="Search By" formControlName="searchFilter">
+        <mat-option *ngFor="let filter of filters" [value]="filter.value">
+          {{ filter.view }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="searchForm.get('searchFilter').invalid && searchForm.get('searchFilter').touched">

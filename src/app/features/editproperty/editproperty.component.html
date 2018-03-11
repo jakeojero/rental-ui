@@ -1,0 +1,94 @@
+<mat-card>
+  <div>
+    <form [formGroup]="propertyForm" style="width: 100%">
+      <div>
+      <mat-form-field>
+        <input matInput placeholder="Rooms" formControlName="rooms">
+        <mat-error *ngIf="propertyForm.get('rooms').invalid && propertyForm.get('rooms').touched">
+          {{getRoomsError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Price" formControlName="price">
+        <mat-error *ngIf="propertyForm.get('price').invalid && propertyForm.get('price').touched">
+          {{getPriceError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+        <mat-error *ngIf="propertyForm.get('notes').invalid && propertyForm.get('notes').touched">
+          {{getNotesError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="address">
+        <mat-error *ngIf="propertyForm.get('address').invalid && propertyForm.get('address').touched">
+          {{getAddressError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="City" formControlName="city">
+        <mat-error *ngIf="propertyForm.get('city').invalid && propertyForm.get('city').touched">
+          {{getCityError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Province" formControlName="province">
+        <mat-error *ngIf="propertyForm.get('province').invalid && propertyForm.get('province').touched">
+          {{getProvinceError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Country" formControlName="country">
+        <mat-error *ngIf="propertyForm.get('country').invalid && propertyForm.get('country').touched">
+          {{getCountryError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Postal Code" formControlName="postalCode">
+        <mat-error *ngIf="propertyForm.get('postalCode').invalid && propertyForm.get('postalCode').touched">
+          {{getPostalCodeError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Tenants" formControlName="tenants">
+        <mat-error *ngIf="propertyForm.get('tenants').invalid && propertyForm.get('tenants').touched">
+          {{getTenantsError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Rate" formControlName="monthlyRate">
+        <mat-error *ngIf="propertyForm.get('monthlyRate').invalid && propertyForm.get('monthlyRate').touched">
+          {{getRateError()}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Expenses" formControlName="expenses">
+        <mat-error *ngIf="propertyForm.get('expenses').invalid && propertyForm.get('expenses').touched">
+          {{getExpensesError()}}
+        </mat-error>
+      </mat-form-field>
+      </div>
+    </form>
+  </div>
+</mat-card>

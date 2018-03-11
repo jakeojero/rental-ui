@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './alert/alert.component';
 import {AlertService} from './alert/alert.service';
 import { PropertylistService } from './propertylist/propertylist.service';
+import { EditpropertyComponent } from './editproperty/editproperty.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { PropertylistService } from './propertylist/propertylist.service';
     ProfileComponent,
     PropertydetailsComponent,
     AlertComponent,
+    EditpropertyComponent,
   ],
   exports: [
     HomeComponent,

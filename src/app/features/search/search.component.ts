@@ -9,14 +9,15 @@ import { EventEmitter } from 'protractor';
 })
 export class SearchComponent implements OnInit {
 
-  // @Output() filteredSearch = new EventEmitter();
+  // @Input() properties
   searchForm: FormGroup;
   filters = [
-    'Address',
-    'City',
-    'Province',
-    'Country',
-    'Postal Code',
+    {value: 'rooms' , view: '# of Rooms'},
+    {value: 'city' , view: 'City'},
+    {value: 'province' , view: 'Province'},
+    {value: 'id' , view: 'Property Id'},
+    {value: 'title' , view: 'Title'},
+    {value: 'price' , view: 'Price'},
   ];
 
   constructor(@Inject(FormBuilder) fb: FormBuilder) {
@@ -35,9 +36,4 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // filterSearch() {
-  //   this.filteredSearch.emit('filter', this.searchForm.get('searchFilter').value, this.searchForm.get('searchTerm').value);
-  //   // Send this up to parent propertylist to refresh properties with filter
-  // }
 }

@@ -67,11 +67,12 @@ export class LoginComponent implements OnInit {
   }
 
   handleError(response: HttpErrorResponse) {
-    if (response.status === 400)
+    if (response.status === 400) {
       this.alert.error('Invalid Credentials', 5000, false);
-    if (response.status === 404)
+    }
+    if (response.status === 404) {
       this.alert.error('User could not be found', 5000, false);
-
+    }
   }
 }
 
