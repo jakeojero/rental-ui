@@ -3,9 +3,9 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { LoginUser } from '../../core/shared/models/LoginUser';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
-import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {XenosError} from '../../core/shared/models/XenosError';
-import {AlertService} from '../alert/alert.service';
+import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { XenosError } from '../../core/shared/models/XenosError';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(@Inject(FormBuilder) fb: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-              private alert: AlertService) {
+    private alert: AlertService) {
     this.loginForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
   getPasswordError() {
     return this.loginForm.get('password').hasError('required') ? 'Required' :
       // this.loginForm.get('password').hasError('pattern') ? 'Must contain letters and numbers' :
-        this.loginForm.get('password').hasError('minlength') ? 'Must contain at least 8 characters' :
-          '';
+      this.loginForm.get('password').hasError('minlength') ? 'Must contain at least 8 characters' :
+        '';
   }
   getUsernameError() {
     return this.loginForm.get('username').hasError('required') ? 'Required' :
@@ -74,3 +74,4 @@ export class LoginComponent implements OnInit {
 
   }
 }
+
