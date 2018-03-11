@@ -24,7 +24,6 @@ export class LoginService {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-    this.baseUrl = 'http://localhost:8080/';
     return this.httpClient.get(`${this.baseUrl}auth/login`, {observe: 'response', headers: headers});
   }
 
