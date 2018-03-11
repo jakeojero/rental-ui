@@ -1,3 +1,47 @@
-<p>
-  navbar works!
-</p>
+<header>
+  <nav fxHide fxShow.gt-sm>
+    <mat-toolbar color="primary">
+      <img src="/images/28313441_10214135880646939_60839564_n.png" srcset="" alt="Xenos" />
+      <button mat-button routerLink="rentals">
+        Rentals
+      </button>
+      <button mat-button routerLink="realestate">
+        Real Estate
+      </button>
+      <button mat-button routerLink="seller">
+        Seller/Landlord Tools
+      </button>
+      <div class="flex-spacer" style="flex: 1 1 auto"></div>
+      <button mat-button [matMenuTriggerFor]="login">
+        My Xenos
+      </button>
+      <mat-menu #login="matMenu">
+        <button mat-menu-item routerLink="register">
+          Register
+        </button>
+        <button mat-menu-item routerLink="login">
+          Login
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+  </nav>
+
+  <nav fxHide fxShow.lt-sm>
+    <mat-toolbar color="primary">
+      <mat-menu #mobileMenu="matMenu">
+        <button mat-menu-item routerLink="register">
+          Register
+        </button>
+        <button mat-menu-item routerLink="login">
+          Login
+        </button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+        <mat-icon>reorder</mat-icon>
+      </button>
+    </mat-toolbar>
+
+  </nav>
+
+</header>
