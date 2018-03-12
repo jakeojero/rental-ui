@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Property } from '../../core/shared/models/Property';
 import { PropertylistService } from './propertylist.service';
+import {PropertyPipe} from './PropertyPipe';
+
 @Component({
   selector: 'app-propertylist',
   templateUrl: './propertylist.component.html',
@@ -8,8 +10,10 @@ import { PropertylistService } from './propertylist.service';
 })
 export class PropertylistComponent implements OnInit {
 
+  searchBy: string;
+  search: string;
 
-  properties: Property[] = new Array<Property>();
+  properties: Property[] = [];
   property: Property;
   constructor(private propertylistService: PropertylistService) { }
 
@@ -20,9 +24,12 @@ export class PropertylistComponent implements OnInit {
     });
   }
 
-  getFilteredProperties(filter: string, term: string) {
-    this.propertylistService.getFilteredProperties(filter, term).subscribe(properties => {
-      this.properties = <Property[]>properties.body;
-    });
+  onSearchChange($event) {
+    this.search = $event;
   }
+
+  onSearchByChange($event) {
+    this.searchBy = $event;
+  }
+
 }

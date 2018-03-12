@@ -1,7 +1,7 @@
 <!-- Search component goes here -->
 <div style="text-align:center">
-  <app-search></app-search>
+  <app-search (searchBy)="onSearchByChange($event)" (search)="onSearchChange($event)"></app-search>
 </div>
-<mat-card *ngFor="let property of properties">
+<mat-card *ngFor="let property of properties | prop : searchBy : search">
   <app-property [property]="property"></app-property>
 </mat-card>

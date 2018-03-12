@@ -15,12 +15,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
-import { HttpModule, Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './alert/alert.component';
 import {AlertService} from './alert/alert.service';
 import { PropertylistService } from './propertylist/propertylist.service';
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
+import {PropertyPipe} from './propertylist/PropertyPipe';
 
 @NgModule({
   imports: [
@@ -42,6 +42,7 @@ import { AuthenticationGuard } from './guards/AuthenticationGuard';
     ProfileComponent,
     PropertydetailsComponent,
     AlertComponent,
+    PropertyPipe
   ],
   exports: [
     HomeComponent,
@@ -49,7 +50,8 @@ import { AuthenticationGuard } from './guards/AuthenticationGuard';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    PropertyPipe
   ],
   providers: [
     LoginService,
