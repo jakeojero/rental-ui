@@ -11,7 +11,7 @@ import {
   MatToolbarModule,
   MatRadioModule,
   MatSelectModule,
-  MatIconModule, MatChip, MatChipsModule
+  MatIconModule, MatChip, MatChipsModule, MatGridListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +37,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule
   ],
   declarations: [],
   exports: [CommonModule,
@@ -57,7 +58,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule
   ]
 })
 export class SharedModule { }

@@ -13,12 +13,18 @@ import {Property} from '../../core/shared/models/Property';
 export class PropertyPipe implements PipeTransform {
   transform(properties: Property[], searchBy: string, search: string): Property[] {
 
-    if(search && search.length > 0) {
+    if(searchBy && search && search.length > 0) {
       switch (searchBy) {
         case 'Address':
           return properties.filter(property => property.locator.address.indexOf(search) >= 0);
         case 'Province':
           return properties.filter(property => property.locator.province.indexOf(search) >= 0);
+        case 'Rooms':
+          return properties.filter(property => property.rooms === Number(search));
+        case 'Title':
+          return properties.filter(property => property.title.indexOf(search) >= 0);
+        case 'Price':
+          return properties.filter(property => property.price <= Number(search));
       }
     }
     else {

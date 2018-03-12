@@ -1,7 +1,18 @@
 <!-- Search component goes here -->
-<div style="text-align:center">
+<div style="text-align: center">
   <app-search (searchBy)="onSearchByChange($event)" (search)="onSearchChange($event)"></app-search>
 </div>
-<mat-card *ngFor="let property of properties | prop : searchBy : search">
-  <app-property [property]="property"></app-property>
-</mat-card>
+
+<mat-grid-list fxHide fxShow.gt-sm cols="4" rowHeight="400px" gutterSize="0px" class="margin-top">
+  <mat-grid-tile *ngFor="let property of properties | prop : searchBy : search">
+    <app-property (click)="openDetails(property)" [property]="property" style="cursor: pointer"></app-property>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list fxHide fxShow.lt-sm cols="1" rowHeight="400px" gutterSize="0px" class="margin-top">
+  <mat-grid-tile *ngFor="let property of properties | prop : searchBy : search">
+    <app-property (click)="openDetails(property)" [property]="property"></app-property>
+  </mat-grid-tile>
+</mat-grid-list>
+
+

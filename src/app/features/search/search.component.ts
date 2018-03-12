@@ -13,12 +13,11 @@ export class SearchComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
   @Output() searchBy = new EventEmitter<any>();
 
-  searchForm: FormGroup;
   filters = [
-    {value: 'rooms' , view: '# of Rooms'},
+    {value: 'rooms' , view: 'Rooms'},
     {value: 'city' , view: 'City'},
     {value: 'province' , view: 'Province'},
-    {value: 'id' , view: 'Property Id'},
+    {value: 'id' , view: 'Id'},
     {value: 'title' , view: 'Title'},
     {value: 'price' , view: 'Price'},
   ];

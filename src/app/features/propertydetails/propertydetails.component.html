@@ -1,13 +1,16 @@
-<mat-card>
-  <img src="" alt="property" />
-  <br /> Title: {{property.title}}
-  <br /> Posted By: {{property.user}}
-  <br /> # of Rooms: {{property.rooms}}
-  <br /> Rate: {{property.price}}
-  <br /> Address: {{locator.address}}
-  <br /> {{locator.city}}, {{locator.province}}, {{locator.country}} {{locator.postalCode}}
-  <br /> # of Tenants: {{propertyDetails.amountOfTenants}}
-  <br /> Expenses(?): {{propertyDetails.expenses}}
-  <br /> Monthly Rate: {{propertyDetails.monthlyRate}}
+<h2 mat-dialog-title>{{data.property.locator.address}}</h2>
+<mat-dialog-content>
+  <br /><b>Title:</b> {{data.property.title}}
+  <br /><b>Posted By:</b> {{data.property.user?.username}}
+  <br /><b>Rooms:</b> {{data.property.rooms}}
+  <br /><b>Rate:</b> {{data.property.price}}
+  <br /><b>City:</b> {{data.property.locator.city}}
+  <br /><b>Province:</b> {{data.property.locator.province}}
+  <br /><b>PostalCode:</b> {{data.property.locator.postalCode}}
   <br />
-</mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close >Update</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true">Delete</button>
+</mat-dialog-actions>
