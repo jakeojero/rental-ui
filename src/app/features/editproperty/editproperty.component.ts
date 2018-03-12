@@ -3,9 +3,9 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { Property } from '../../core/shared/models/Property';
 import { Router } from '@angular/router';
 import { EditpropertyService } from './editproperty.service';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {XenosError} from '../../core/shared/models/XenosError';
-import {AlertService} from '../alert/alert.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { XenosError } from '../../core/shared/models/XenosError';
+import { AlertService } from '../alert/alert.service';
 import { PropertyDetails } from '../../core/shared/models/PropertyDetails';
 import { Locator } from '../../core/shared/models/Locator';
 
@@ -89,8 +89,7 @@ export class EditpropertyComponent implements OnInit {
       this.property = new Property();
       this.property.details = new PropertyDetails();
       this.property.locator = new Locator();
-      this.property.user.username = localStorage.getItem('username');
-      this.property.user.email = localStorage.getItem('email');
+      this.property.user = window.localStorage.getItem('username');
       this.property.title = this.propertyForm.get('title').value;
       this.property.rooms = this.propertyForm.get('rooms').value;
       this.property.price = this.propertyForm.get('price').value;

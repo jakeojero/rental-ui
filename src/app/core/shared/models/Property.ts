@@ -2,10 +2,7 @@ import { PropertyDetails } from './PropertyDetails';
 import { Locator } from './Locator';
 
 export class Property {
-  user: {
-    username: string,
-    email: string
-  };
+  user: string;
   title: string;
   rooms: number;
   price: number;

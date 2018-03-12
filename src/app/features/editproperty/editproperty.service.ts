@@ -19,7 +19,8 @@ export class EditpropertyService {
 
   submitProperty(property: Property) {
     const headers = new HttpHeaders({
-      'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
+      'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
     });
 
     return this.httpClient.post('/api/properties', property, { headers: headers });
