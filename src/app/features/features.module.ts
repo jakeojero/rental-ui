@@ -21,6 +21,7 @@ import { AlertComponent } from './alert/alert.component';
 import {AlertService} from './alert/alert.service';
 import { PropertylistService } from './propertylist/propertylist.service';
 import { EditpropertyComponent } from './editproperty/editproperty.component';
+import { EditpropertyService } from './editproperty/editproperty.service';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { EditpropertyComponent } from './editproperty/editproperty.component';
     RegisterService,
     AlertService,
     PropertylistService,
+    EditpropertyService
   ]
 })
 export class FeaturesModule { }

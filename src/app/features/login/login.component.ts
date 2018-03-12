@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
   onSaveComplete(res): void {
     this.alert.info('Login Successful', 5000, true);
     window.localStorage.setItem('token', res.headers.get('X-AUTH-TOKEN'));
+    window.localStorage.setItem('username', res.body.username);
+    window.localStorage.setItem('email', res.body.email);
     // save user name and roles here which will dictate what you display on a screen
     this.loginForm.reset();
     this.router.navigate(['home']);
