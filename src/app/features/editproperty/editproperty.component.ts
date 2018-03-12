@@ -67,7 +67,7 @@ export class EditpropertyComponent implements OnInit {
   ngOnInit() {
   }
 
-  // submitProperty() {
-  //
-  // }
+  submitProperty() {
+
+  }
 }
