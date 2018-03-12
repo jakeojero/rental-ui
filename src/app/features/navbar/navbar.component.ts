@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from '../alert/alert.service';
+import { NavbarService } from './navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,22 +13,19 @@ export class NavbarComponent implements OnInit {
   user: string;
   loggedIn = false;
   constructor(private router: Router,
-    private alert: AlertService) { }
+    private alert: AlertService,
+    private navService: NavbarService) { }
 
   ngOnInit() {
     this.user = window.localStorage.getItem('username');
-    if (this.user) {
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
+    this.navService.getLoggedStatus().subscribe(loggedIn => {
+      this.loggedIn = loggedIn;
+    });
   }
 
   logout() {
-    window.localStorage.setItem('token', '');
-    window.localStorage.setItem('username', '');
-    window.localStorage.setItem('email', '');
-    this.loggedIn = false;
+    window.localStorage.clear();
+    this.navService.updateLoggedInStatus(false);
     this.alert.info('You are now logged out.', 5000, true);
     this.router.navigate(['home']);
   }

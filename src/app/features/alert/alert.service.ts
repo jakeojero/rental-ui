@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Alert, AlertType} from './alert';
-import {Subject} from 'rxjs/Subject';
-import {NavigationStart, Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import { Alert, AlertType } from './alert';
+import { Subject } from 'rxjs/Subject';
+import { NavigationStart, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AlertService {
@@ -13,13 +13,12 @@ export class AlertService {
   constructor(private router: Router) {
 
     router.events.subscribe(event => {
-      if(event instanceof NavigationStart) {
-        if(this.keepAfterRouteChange) {
+      if (event instanceof NavigationStart) {
+        if (this.keepAfterRouteChange) {
           // only keep for a single route change
           console.log('route changed');
           this.keepAfterRouteChange = false;
-        }
-        else {
+        } else {
           console.log('clearing');
           this.clear();
         }

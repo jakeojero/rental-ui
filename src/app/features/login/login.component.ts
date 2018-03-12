@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { XenosError } from '../../core/shared/models/XenosError';
 import { AlertService } from '../alert/alert.service';
+import { NavbarService } from '../navbar/navbar.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(@Inject(FormBuilder) fb: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private navService: NavbarService) {
     this.loginForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -65,6 +67,7 @@ export class LoginComponent implements OnInit {
     window.localStorage.setItem('email', res.body.email);
     // save user name and roles here which will dictate what you display on a screen
     this.loginForm.reset();
+    this.navService.updateLoggedInStatus(true);
     this.router.navigate(['home']);
   }
 

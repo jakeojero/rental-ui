@@ -23,6 +23,7 @@ import { AuthenticationGuard } from './guards/AuthenticationGuard';
 import {PropertyPipe} from './propertylist/PropertyPipe';
 import { EditpropertyComponent } from './editproperty/editproperty.component';
 import { EditpropertyService } from './editproperty/editproperty.service';
+import { NavbarService } from './navbar/navbar.service';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { EditpropertyService } from './editproperty/editproperty.service';
     AlertService,
     PropertylistService,
     AuthenticationGuard,
-    EditpropertyService
+    EditpropertyService,
+    NavbarService
   ]
 })
 export class FeaturesModule { }
