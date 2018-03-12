@@ -9,35 +9,55 @@
         Seller/Landlord Tools
       </button>
       <div class="flex-spacer" style="flex: 1 1 auto"></div>
-      <button mat-button routerLink="propertyEdit">
-        Add New Listing
-      </button>
-      <button mat-button [matMenuTriggerFor]="login">
-        My Xenos
-      </button>
-      <mat-menu #login="matMenu">
-        <button mat-menu-item routerLink="register">
-          Register
+      <div *ngIf="!this.loggedIn">
+        <button mat-button [matMenuTriggerFor]="login">
+          My Xenos
         </button>
-        <button mat-menu-item routerLink="login">
-          Login
+        <mat-menu #login="matMenu">
+          <button mat-menu-item routerLink="register">
+            Register
+          </button>
+          <button mat-menu-item routerLink="login">
+            Login
+          </button>
+        </mat-menu>
+      </div>
+      <div *ngIf="this.loggedIn">
+        <button mat-button routerLink="propertyEdit">
+          Add New Listing
         </button>
-      </mat-menu>
+        <button mat-button [matMenuTriggerFor]="login">
+          Welcome, {{user}}
+        </button>
+        <mat-menu #login="matMenu">
+          <button mat-menu-item (click)="logout()">
+            Logout
+          </button>
+        </mat-menu>
+      </div>
     </mat-toolbar>
   </nav>
 
   <nav fxHide fxShow.lt-sm>
     <mat-toolbar color="primary">
-      <button routerLink="propertyEdit">
-        Add New Listing
-      </button>
+
       <mat-menu #mobileMenu="matMenu">
-        <button mat-menu-item routerLink="register">
-          Register
-        </button>
-        <button mat-menu-item routerLink="login">
-          Login
-        </button>
+        <div *ngIf="!this.loggedIn">
+          <button mat-menu-item routerLink="register">
+            Register
+          </button>
+          <button mat-menu-item routerLink="login">
+            Login
+          </button>
+        </div>
+        <div *ngIf="this.loggedIn">
+          <button mat-menu-item routerLink="propertyEdit">
+            Add New Listing
+          </button>
+          <button mat-menu-item (click)="logout()">
+            Logout
+          </button>
+        </div>
       </mat-menu>
 
       <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
