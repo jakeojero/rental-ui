@@ -23,6 +23,8 @@ export class PropertyPipe implements PipeTransform {
           return properties.filter(property => property.rooms === Number(search));
         case 'Title':
           return properties.filter(property => property.title.indexOf(search) >= 0);
+        case 'City':
+          return properties.filter(property => property.locator.city.indexOf(search) >= 0);
         case 'Price':
           return properties.filter(property => property.price <= Number(search));
       }

@@ -17,7 +17,6 @@ export class SearchComponent implements OnInit {
     {value: 'rooms' , view: 'Rooms'},
     {value: 'city' , view: 'City'},
     {value: 'province' , view: 'Province'},
-    {value: 'id' , view: 'Id'},
     {value: 'title' , view: 'Title'},
     {value: 'price' , view: 'Price'},
   ];
