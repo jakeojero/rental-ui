@@ -19,7 +19,6 @@ export class PropertylistService {
 
   constructor(private httpClient: HttpClient) { }
 
-
   getProperties() {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`

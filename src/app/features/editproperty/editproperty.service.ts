@@ -17,13 +17,20 @@ export class EditpropertyService {
   private baseUrl = url;
   constructor(private httpClient: HttpClient) { }
 
-  submitProperty(property: Property) {
+  submitProperty(property: Property, user: string) {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`,
       'Content-Type': 'application/json'
     });
 
-    return this.httpClient.post('/api/properties', property, { headers: headers });
+    const obj = {
+      user: user,
+      property: property
+    };
+
+    console.log(obj);
+
+    return this.httpClient.post('/api/properties', obj, { headers: headers });
   }
 
   updateProperty(property: Property, id: string) {

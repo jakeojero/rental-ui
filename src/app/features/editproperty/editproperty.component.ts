@@ -18,7 +18,7 @@ import { Locator } from '../../core/shared/models/Locator';
 export class EditpropertyComponent implements OnInit {
 
   property: Property;
-  propertyDetails: PropertyDetails;
+  // propertyDetails: PropertyDetails;
   locator: Locator;
   propertyForm: FormGroup;
   errorMessage: XenosError;
@@ -87,23 +87,22 @@ export class EditpropertyComponent implements OnInit {
   submitProperty() {
     if (this.propertyForm.dirty && this.propertyForm.valid) {
       this.property = new Property();
-      this.property.details = new PropertyDetails();
+      // this.property.details = new PropertyDetails();
       this.property.locator = new Locator();
-      this.property.user = window.localStorage.getItem('username');
       this.property.title = this.propertyForm.get('title').value;
-      this.property.rooms = this.propertyForm.get('rooms').value;
-      this.property.price = this.propertyForm.get('price').value;
-      this.property.notes = this.propertyForm.get('notes').value;
-      this.property.details.amountOfTenants = this.propertyForm.get('tenants').value;
-      this.property.details.expenses = this.propertyForm.get('expenses').value;
-      this.property.details.monthlyRate = this.propertyForm.get('monthlyRate').value;
+      this.property.rooms = +this.propertyForm.get('rooms').value;
+      this.property.price = +this.propertyForm.get('price').value;
+      this.property.notes.push(this.propertyForm.get('notes').value);
+      // this.property.details.amountOfTenants = this.propertyForm.get('tenants').value;
+      // this.property.details.expenses = this.propertyForm.get('expenses').value;
+      // this.property.details.monthlyRate = this.propertyForm.get('monthlyRate').value;
       this.property.locator.address = this.propertyForm.get('address').value;
       this.property.locator.city = this.propertyForm.get('city').value;
       this.property.locator.province = this.propertyForm.get('province').value;
       this.property.locator.country = this.propertyForm.get('country').value;
       this.property.locator.postalCode = this.propertyForm.get('postalCode').value;
 
-      this.editpropertyservice.submitProperty(this.property).subscribe(
+      this.editpropertyservice.submitProperty(this.property, window.localStorage.getItem('username')).subscribe(
         (res) => this.onSubmitComplete(res),
         (error: HttpErrorResponse) => this.handleError(error)
       );
