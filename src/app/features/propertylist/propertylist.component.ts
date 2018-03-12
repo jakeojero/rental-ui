@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Property } from '../../core/shared/models/Property';
 import { PropertylistService } from './propertylist.service';
-import {PropertyPipe} from './PropertyPipe';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import {PropertydetailsComponent} from '../propertydetails/propertydetails.component';
+
 
 @Component({
   selector: 'app-propertylist',
@@ -15,7 +17,8 @@ export class PropertylistComponent implements OnInit {
 
   properties: Property[] = [];
   property: Property;
-  constructor(private propertylistService: PropertylistService) { }
+  constructor(private propertylistService: PropertylistService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     // Load properties
@@ -32,4 +35,12 @@ export class PropertylistComponent implements OnInit {
     this.searchBy = $event;
   }
 
+  openDetails(property: Property) {
+    console.log(property);
+    this.dialog.open(PropertydetailsComponent, {
+      data: {
+        property
+      }
+    });
+  }
 }
