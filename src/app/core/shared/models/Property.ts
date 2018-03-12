@@ -1,9 +1,11 @@
-import { RegisterUser } from './RegisterUser';
 import { PropertyDetails } from './PropertyDetails';
 import { Locator } from './Locator';
 
 export class Property {
-  user: RegisterUser;
+  user: {
+    username: string,
+    email: string
+  };
   title: string;
   rooms: number;
   price: number;

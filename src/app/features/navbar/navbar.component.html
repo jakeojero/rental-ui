@@ -9,6 +9,9 @@
         Seller/Landlord Tools
       </button>
       <div class="flex-spacer" style="flex: 1 1 auto"></div>
+      <button mat-button routerLink="propertyEdit">
+        Add New Listing
+      </button>
       <button mat-button [matMenuTriggerFor]="login">
         My Xenos
       </button>
@@ -25,6 +28,9 @@
 
   <nav fxHide fxShow.lt-sm>
     <mat-toolbar color="primary">
+      <button routerLink="propertyEdit">
+        Add New Listing
+      </button>
       <mat-menu #mobileMenu="matMenu">
         <button mat-menu-item routerLink="register">
           Register

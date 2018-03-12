@@ -7,14 +7,18 @@ import { RegisterComponent } from '../features/register/register.component';
 import { PropertylistComponent } from '../features/propertylist/propertylist.component';
 import { PropertydetailsComponent } from '../features/propertydetails/propertydetails.component';
 import {AuthenticationGuard} from '../features/guards/AuthenticationGuard';
+import { EditpropertyComponent } from '../features/editproperty/editproperty.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'propertyList', component: PropertylistComponent, canActivate: [AuthenticationGuard] },
-  { path: 'propertyDetail', component: PropertydetailsComponent, canActivate: [AuthenticationGuard] },
+  { path: 'propertyList', component: PropertylistComponent },
+  { path: 'propertyDetail', component: PropertydetailsComponent },
+  { path: 'propertyEdit', component: EditpropertyComponent },
+
 ];
 
 @NgModule({

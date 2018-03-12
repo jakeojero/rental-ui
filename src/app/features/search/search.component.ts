@@ -15,11 +15,12 @@ export class SearchComponent implements OnInit {
 
   searchForm: FormGroup;
   filters = [
-    'Address',
-    'City',
-    'Province',
-    'Country',
-    'Postal Code',
+    {value: 'rooms' , view: '# of Rooms'},
+    {value: 'city' , view: 'City'},
+    {value: 'province' , view: 'Province'},
+    {value: 'id' , view: 'Property Id'},
+    {value: 'title' , view: 'Title'},
+    {value: 'price' , view: 'Price'},
   ];
 
   constructor(@Inject(FormBuilder) fb: FormBuilder) {
@@ -35,5 +36,4 @@ export class SearchComponent implements OnInit {
   searchByChange(event) {
     this.searchBy.emit(event.value);
   }
-
 }

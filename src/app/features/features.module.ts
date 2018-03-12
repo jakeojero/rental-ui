@@ -21,6 +21,9 @@ import {AlertService} from './alert/alert.service';
 import { PropertylistService } from './propertylist/propertylist.service';
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
 import {PropertyPipe} from './propertylist/PropertyPipe';
+import { EditpropertyComponent } from './editproperty/editproperty.component';
+import { EditpropertyService } from './editproperty/editproperty.service';
+
 
 @NgModule({
   imports: [
@@ -42,7 +45,9 @@ import {PropertyPipe} from './propertylist/PropertyPipe';
     ProfileComponent,
     PropertydetailsComponent,
     AlertComponent,
-    PropertyPipe
+    PropertyPipe,
+    EditpropertyComponent,
+
   ],
   exports: [
     HomeComponent,
@@ -58,7 +63,8 @@ import {PropertyPipe} from './propertylist/PropertyPipe';
     RegisterService,
     AlertService,
     PropertylistService,
-    AuthenticationGuard
+    AuthenticationGuard,
+    EditpropertyService
   ]
 })
 export class FeaturesModule { }

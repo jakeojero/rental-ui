@@ -61,17 +61,20 @@ export class LoginComponent implements OnInit {
   onSaveComplete(res): void {
     this.alert.info('Login Successful', 5000, true);
     window.localStorage.setItem('token', res.headers.get('X-AUTH-TOKEN'));
+    window.localStorage.setItem('username', res.body.username);
+    window.localStorage.setItem('email', res.body.email);
     // save user name and roles here which will dictate what you display on a screen
     this.loginForm.reset();
     this.router.navigate(['home']);
   }
 
   handleError(response: HttpErrorResponse) {
-    if (response.status === 400)
+    if (response.status === 400) {
       this.alert.error('Invalid Credentials', 5000, false);
-    if (response.status === 404)
+    }
+    if (response.status === 404) {
       this.alert.error('User could not be found', 5000, false);
-
+    }
   }
 }
 

@@ -13,29 +13,22 @@ import { environment } from '../../../environments/environment';
 const url = environment.apiURL;
 
 @Injectable()
-export class PropertylistService {
-
+export class EditpropertyService {
   private baseUrl = url;
-
   constructor(private httpClient: HttpClient) { }
 
-
-  getProperties() {
+  submitProperty(property: Property) {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
     });
 
-    return this.httpClient.get(`/api/properties`, { observe: 'response', headers: headers });
-    // Check on this
+    return this.httpClient.post('/api/properties', property, { headers: headers });
   }
 
-  // Implement the search parameter.
-  getFilteredProperties(filter: string, term: string) {
+  updateProperty(property: Property, id: string) {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
     });
-
-    return this.httpClient.get(`/api/properties`, { observe: 'response', headers: headers });
-    // Check on this
+    return this.httpClient.put('/api/properties/' + id, property, { headers: headers });
   }
 }
