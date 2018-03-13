@@ -2,6 +2,9 @@
   <nav fxHide fxShow.gt-sm>
     <mat-toolbar color="primary">
       <img src="/images/logo.png" srcset="" alt="Xenos" />
+      <button mat-button routerLink="home">
+        Home
+      </button>
       <button mat-button routerLink="propertyList">
         Listings
       </button>
@@ -42,6 +45,12 @@
     <mat-toolbar color="primary">
 
       <mat-menu #mobileMenu="matMenu">
+        <button mat-menu-item routerLink="home">
+          Home
+        </button>
+        <button mat-menu-item routerLink="propertyList">
+          Listings
+        </button>
         <div *ngIf="!this.loggedIn">
           <button mat-menu-item routerLink="register">
             Register
@@ -54,6 +63,9 @@
           <button mat-menu-item routerLink="propertyEdit">
             Add New Listing
           </button>
+          <button mat-button routerLink="seller">
+            Seller/Landlord Tools
+          </button>
           <button mat-menu-item (click)="logout()">
             Logout
           </button>
@@ -63,6 +75,7 @@
       <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
         <mat-icon>reorder</mat-icon>
       </button>
+      <img src="/images/logo.png" srcset="" alt="Xenos" />
     </mat-toolbar>
 
   </nav>
