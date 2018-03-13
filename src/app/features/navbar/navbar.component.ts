@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.user = window.localStorage.getItem('username');
     this.navService.getLoggedStatus().subscribe(loggedIn => {
+      this.user = window.localStorage.getItem('username');
       this.loggedIn = loggedIn;
     });
   }
