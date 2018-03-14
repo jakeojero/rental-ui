@@ -1,8 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
 import { Property } from '../../core/shared/models/Property';
 import { PropertylistService } from './propertylist.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import {PropertydetailsComponent} from '../propertydetails/propertydetails.component';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/timeInterval';
+import 'rxjs/add/operator/mergeMap';
 
 
 @Component({
@@ -10,12 +13,13 @@ import {PropertydetailsComponent} from '../propertydetails/propertydetails.compo
   templateUrl: './propertylist.component.html',
   styleUrls: ['./propertylist.component.scss']
 })
-export class PropertylistComponent implements OnInit {
+export class PropertylistComponent implements OnInit, OnDestroy {
 
   searchBy: string;
   search: string;
+  stream;
 
-  properties: Property[] = [];
+  properties: any = [];
   property: Property;
   constructor(private propertylistService: PropertylistService,
               private dialog: MatDialog) { }
@@ -23,8 +27,31 @@ export class PropertylistComponent implements OnInit {
   ngOnInit() {
     // Load properties
     this.propertylistService.getProperties().subscribe(properties => {
-      this.properties = <Property[]>properties.body;
+      this.properties = properties.body;
+
+      this.stream = this.propertylistService.observeMessages('/api/properties/stream')
+        .subscribe((stream) => {
+
+        const property = JSON.parse(stream);
+
+        const found = this.properties.find(prop => {
+          return prop.id === property.id;
+        });
+
+        if(found === undefined) {
+          console.log(`Adding property`)
+          this.properties.push(property);
+        }
+      });
+
     });
+
+
+  }
+
+  ngOnDestroy(): void {
+    if (this.stream)
+      this.stream.unsubscribe();
   }
 
   onSearchChange($event) {
