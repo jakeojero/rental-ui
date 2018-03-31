@@ -1,82 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="start center">
-  <div fxFlex.xs="5%" fxFlex.sm="15%" fxFlex.md="20%"></div>
-  <div fxFlex.xs="90%" fxFlex.sm="70%" fxFlex.md="60%">
-    <br/>
-    <mat-card class="margin-top">
-      <mat-card-title fxLayoutAlign="center">
-        Add/Update Listing
-      </mat-card-title>
-      <mat-card-content fxLayoutAlign="center">
-        <mat-divider></mat-divider>
-        <form [formGroup]="propertyForm" style="width: 100%">
-          <mat-form-field style="width: 50%">
-            <input matInput placeholder="Title" formControlName="title">
-            <mat-error *ngIf="propertyForm.get('title').invalid && propertyForm.get('title').touched">
-              {{getTitleError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
-          <mat-form-field style="width: 30%">
-            <input matInput placeholder="Rooms" formControlName="rooms">
-            <mat-error *ngIf="propertyForm.get('rooms').invalid && propertyForm.get('rooms').touched">
-              {{getRoomsError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
-          <mat-form-field>
-            <span matPrefix>$</span>
-            <input matInput placeholder="Price" formControlName="price">
-            <mat-error *ngIf="propertyForm.get('price').invalid && propertyForm.get('price').touched">
-              {{getPriceError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
+<!--
 
-          <mat-form-field style="width: 100%">
-            <input matInput placeholder="Address" formControlName="address">
-            <mat-error *ngIf="propertyForm.get('address').invalid && propertyForm.get('address').touched">
-              {{getAddressError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
 
-          <mat-form-field style="width: 50%">
-            <input matInput placeholder="City" formControlName="city">
-            <mat-error *ngIf="propertyForm.get('city').invalid && propertyForm.get('city').touched">
-              {{getCityError()}}
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field style="width: 20%">
-            <input matInput placeholder="Province" formControlName="province">
-            <mat-error *ngIf="propertyForm.get('province').invalid && propertyForm.get('province').touched">
-              {{getProvinceError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
-
-          <mat-form-field>
-            <input matInput placeholder="Country" formControlName="country">
-            <mat-error *ngIf="propertyForm.get('country').invalid && propertyForm.get('country').touched">
-              {{getCountryError()}}
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field style="width: 50%">
-            <input matInput placeholder="Postal Code" formControlName="postalCode">
-            <mat-error *ngIf="propertyForm.get('postalCode').invalid && propertyForm.get('postalCode').touched">
-              {{getPostalCodeError()}}
-            </mat-error>
-          </mat-form-field>
-
-          <br />
-          <mat-form-field style="width: 20%">
-            <input matInput placeholder="Tenants" formControlName="tenants">
-            <mat-error *ngIf="propertyForm.get('tenants').invalid && propertyForm.get('tenants').touched">
-              {{getTenantsError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
 
           <mat-form-field>
             <input matInput placeholder="Rate" formControlName="monthlyRate">
@@ -93,14 +17,7 @@
             </mat-error>
           </mat-form-field>
           <br />
-          <mat-form-field style="width: 100%">
-            <textarea matInput placeholder="Notes" formControlName="notes" rows="5"></textarea>
-            <mat-error *ngIf="propertyForm.get('notes').invalid && propertyForm.get('notes').touched">
-              {{getNotesError()}}
-            </mat-error>
-          </mat-form-field>
-          <br />
-          <br />
+
           <button mat-raised-button color="accent" (click)="submitProperty()">Submit</button>
         </form>
       </mat-card-content>
@@ -109,4 +26,167 @@
 
   </div>
   <div fxFlex></div>
+</div> -->
+
+
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3 col-md-8 col-sm-12 col-xs-12">
+        <form class="form" [formGroup]="propertyForm" (ngSubmit)="submitProperty()">
+        <div class="card">
+            <div class="card-header">
+                Add New Listing
+            </div>
+            <div class="card-block">
+                
+                    <section class="form-block">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <label for="title"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('title').invalid && propertyForm.get('title').touched">
+                                <input id="title" type="text" placeholder="Title" formControlName="title">
+                                <span class="tooltip-content">
+                                    {{getTitleError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price $</label>
+                            <label for="price"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('price').invalid && propertyForm.get('price').touched">
+                                <input id="price" type="text" placeholder="Price" formControlName="price">
+                                <span class="tooltip-content">
+                                    {{getPriceError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rooms">Rooms</label>
+                            <label for="rooms"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('rooms').invalid && propertyForm.get('rooms').touched">
+                                <input id="rooms" type="text" placeholder="Rooms" formControlName="rooms">
+                                <span class="tooltip-content">
+                                    {{getRoomsError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <label for="address"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('address').invalid && propertyForm.get('address').touched">
+                                <input id="address" type="text" placeholder="Address" formControlName="address">
+                                <span class="tooltip-content">
+                                    {{getAddressError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <label for="city"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('city').invalid && propertyForm.get('city').touched">
+                                <input id="city" type="text" placeholder="City" formControlName="city">
+                                <span class="tooltip-content">
+                                    {{getCityError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="province">Province</label>
+                            <label for="province"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('province').invalid && propertyForm.get('province').touched">
+                                <input id="province" type="text" placeholder="Province" formControlName="province">
+                                <span class="tooltip-content">
+                                    {{getProvinceError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <label for="country"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('country').invalid && propertyForm.get('country').touched">
+                                <input id="country" type="text" placeholder="Country" formControlName="country">
+                                <span class="tooltip-content">
+                                    {{getCountryError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postalCode">Postal Code</label>
+                            <label for="postalCode"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('postalCode').invalid && propertyForm.get('postalCode').touched">
+                                <input id="postalCode" type="text" placeholder="Postal Code" formControlName="postalCode">
+                                <span class="tooltip-content">
+                                    {{getPostalCodeError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tenants">Tenants</label>
+                            <label for="tenants"
+                                aria-haspopup="true"
+                                role="tooltip"
+                                class="tooltip tooltip-validation tooltip-sm"
+                                [class.invalid]="propertyForm.get('tenants').invalid && propertyForm.get('tenants').touched">
+                                <input id="tenants" type="text" placeholder="Tenants" formControlName="tenants">
+                                <span class="tooltip-content">
+                                    {{getTenantsError()}}
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                                <label for="notes">Notes</label>
+                            </div>
+                            <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+                                <textarea id="notes" class="form-control" formControlName="notes"></textarea>
+                            </div>
+                        </div>
+                        
+                    </section>
+                
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary"
+                type="submit"
+                [disabled]="propertyForm.invalid">Add</button>
+            </div>
+        </div>
+      </form>
+    </div>
 </div>
+
+
+

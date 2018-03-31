@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ClarityModule } from '@clr/angular';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    MatGridListModule
+    MatGridListModule,
+    ClarityModule
   ],
   declarations: [],
   exports: [CommonModule,
@@ -59,7 +61,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    MatGridListModule
+    MatGridListModule,
+    ClarityModule
   ]
 })
 export class SharedModule { }

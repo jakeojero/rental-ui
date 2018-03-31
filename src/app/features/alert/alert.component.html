@@ -1,6 +1,14 @@
-<div *ngFor="let alert of alerts">
+<!-- <div *ngFor="let alert of alerts">
   <div fxFlex="20%"></div>
   <div fxFlex="60%" fxLayoutAlign="center" class="alert" [ngStyle]="{'background-color':  alert.type === 2 ? '#F66359' : alert.type === 1 ? '#FFAA2C' : alert.type === 0 ? '#6BBD6E' : '' }">
     {{alert.message}}
   </div>
-</div>
+</div> -->
+
+<clr-alert *ngFor="let alert of alerts" [clrAlertType]="alert.type === 0 ? 'alert-success' : alert.type === 1 ? 'alert-warning' : alert.type === 2 ? 'alert-danger' : ''" [clrAlertAppLevel]="true">
+    <clr-alert-item>
+        <span class="alert-text">
+            {{alert.message}}
+        </span>
+    </clr-alert-item>
+</clr-alert>

@@ -1,3 +1,4 @@
+import { LoginService } from './../login/login.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { RegisterUser } from '../../core/shared/models/RegisterUser';
@@ -70,7 +71,7 @@ export class RegisterComponent implements OnInit {
 
   onSaveComplete(res): void {
     this.registerForm.reset();
-    this.alert.info('Registered! Please Log in', 5000, true);
+    
     this.router.navigate(['login']);
   }
 
@@ -78,7 +79,6 @@ export class RegisterComponent implements OnInit {
 
     // handles an error and casts the message to a xenos error
     const error = <XenosError>response.error;
-    this.alert.error(error.message, 5000, false);
-
+    this.errorMessage = error;
   }
 }

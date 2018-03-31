@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
     <mat-form-field>
       <mat-select placeholder="Search By" (change)="searchByChange($event)">
         <mat-option *ngFor="let filter of filters" [value]="filter.view">
@@ -10,4 +10,51 @@
     <mat-form-field>
       <input matInput placeholder="Search Term" [(ngModel)]="searchString" (input)="searchChange()">
     </mat-form-field>
-</mat-card>
+</mat-card> -->
+
+
+<div class="row">
+  <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+          <div class="card-block">
+              <div class="card-title">
+                  Filter Properties
+              </div>
+          </div>
+          <div class="card-footer row">
+
+            <div class="col-lg-6 col-sm-12">
+                <mat-select placeholder="Search By" (change)="searchByChange($event)">
+                    <mat-option *ngFor="let filter of filters" [value]="filter.view">
+                      {{ filter.view }}
+                    </mat-option>
+                </mat-select>
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <clr-icon shape="search" style="margin-right: 10px;"></clr-icon>
+                <input type="text" placeholder="Search Term" [(ngModel)]="searchString" (input)="searchChange()">
+            </div>
+
+            <!-- <div class="col-lg-3 offset-lg-3 col-sm-12">
+                <mat-select placeholder="Search By" (change)="searchByChange($event)">
+                    <mat-option *ngFor="let filter of filters" [value]="filter.view">
+                      {{ filter.view }}
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+                <clr-icon shape="search" style="margin-right: 10px;"></clr-icon>
+                <input type="text" placeholder="Search Term" [(ngModel)]="searchString" (input)="searchChange()">
+            </div> -->
+            
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+

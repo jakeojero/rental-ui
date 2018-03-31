@@ -1,37 +1,45 @@
-<div fxLayout="row" fxLayoutAlign="start center">
-  <div fxFlex.xs="5%" fxFlex.sm="15%" fxFlex.md="20%"></div>
-  <div fxFlex.xs="90%" fxFlex.sm="70%" fxFlex.md="60%" >
+<div class="login-wrapper">
+    <form class="login" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <label class="title">
+            <h3 class="welcome">Welcome to Xenos</h3>
+            Login
+        </label>
+        <div class="login-group">
+            <label for="login_username"
+                aria-haspopup="true"
+                role="tooltip"
+                class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="loginForm.get('username').invalid && loginForm.get('username').touched">
+                    <input class="username" type="text" id="login_username" placeholder="Username" formControlName="username">
+                <span class="tooltip-content">
+                    {{getUsernameError()}}
+                </span>
+            </label>
 
-    <mat-card class="margin-top">
-      <mat-card-title fxLayoutAlign="center">
-        Login
-      </mat-card-title>
-      <mat-divider></mat-divider>
-      <mat-card-content fxLayoutAlign="center">
-        <form [formGroup]="loginForm" style="width: 100%">
+            <label for="login_password"
+                aria-haspopup="true"
+                role="tooltip"
+                class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="loginForm.get('password').invalid && loginForm.get('password').touched">
+                <input class="password" type="password" id="login_password" placeholder="Password" formControlName="password">
+                <span class="tooltip-content">
+                    {{getPasswordError()}}
+                </span>
+            </label>
 
-            <mat-form-field class="margin-top margin-bottom" style="width: 100%">
-              <input matInput placeholder="Username" formControlName="username" style="width: 75%;">
-              <mat-error *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">
-                {{getUsernameError()}}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="margin-bottom" style="width: 100%;">
-              <input type="password" matInput placeholder="Password" formControlName="password">
-              <mat-error *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
-                {{getPasswordError()}}
-              </mat-error>
-            </mat-form-field>
-
-            <div fxLayoutAlign="center" class="margin-top">
-              <button mat-raised-button color="accent" (click)="submitLogin()">Login</button>
+            <div class="error active" *ngIf="errorMessage">
+                {{errorMessage}}
             </div>
 
-        </form>
-      </mat-card-content>
-    </mat-card>
 
-  </div>
-  <div fxFlex></div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" style="width:50%;" [disabled]="loginForm.invalid">Login</button>
+                <button routerLink="/register" class="btn" style="width:50%">Sign Up</button>
+            </div>
+            <a href="javascript://" class="signup">Forgot your password?</a>
+        </div>
+    </form>
 </div>
+
+
+

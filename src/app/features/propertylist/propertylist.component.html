@@ -1,18 +1,17 @@
 <!-- Search component goes here -->
+
 <div style="text-align: center">
   <app-search (searchBy)="onSearchByChange($event)" (search)="onSearchChange($event)"></app-search>
 </div>
 
-<mat-grid-list fxHide fxShow.gt-sm cols="4" rowHeight="400px" gutterSize="0px" class="margin-top">
-  <mat-grid-tile *ngFor="let property of properties | prop : searchBy : search">
-    <app-property (click)="openDetails(property)" [property]="property" style="cursor: pointer"></app-property>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngFor="let property of properties | prop : searchBy : search" >
+        <app-property  (click)="openDetails(property)" [property]="property" style="cursor: pointer"></app-property>
+    </div>
+</div>
 
-<mat-grid-list fxHide fxShow.lt-sm cols="1" rowHeight="400px" gutterSize="0px" class="margin-top">
-  <mat-grid-tile *ngFor="let property of properties | prop : searchBy : search">
-    <app-property (click)="openDetails(property)" [property]="property"></app-property>
-  </mat-grid-tile>
-</mat-grid-list>
+
+
+
 
 

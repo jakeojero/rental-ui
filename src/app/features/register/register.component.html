@@ -1,42 +1,49 @@
-<div fxLayout="row" fxLayoutAlign="start center">
-  <div fxFlex.xs="5%" fxFlex.sm="15%" fxFlex.md="20%"></div>
-  <div fxFlex.xs="90%" fxFlex.sm="70%" fxFlex.md="60%">
-    <mat-card class="margin-top">
-      <mat-card-title fxLayoutAlign="center">
-        Register
-      </mat-card-title>
-      <mat-divider></mat-divider>
-      <mat-card-content fxLayoutAlign="center">
-      <form [formGroup]="registerForm" style="width: 100%">
+<div class="login-wrapper">
+    <form class="login" [formGroup]="registerForm" (ngSubmit)="submitRegistration()">
+        <label class="title">
+            <h3 class="welcome">Welcome to Xenos</h3>
+            Register
+        </label>
+        <div class="login-group">
+            <label for="register_username"
+                aria-haspopup="true"
+                role="tooltip"
+                class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="registerForm.get('username').invalid && registerForm.get('username').touched">
+                    <input class="username" type="text" id="register_username" placeholder="Username" formControlName="username">
+                <span class="tooltip-content">
+                    {{getUsernameError()}}
+                </span>
+            </label>
 
-            <mat-form-field class="margin-top margin-bottom" style="width: 100%">
-              <input matInput placeholder="Username" formControlName="username">
-              <mat-error *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
-                {{getUsernameError()}}
-              </mat-error>
-            </mat-form-field>
+            <label for="register_password"
+                aria-haspopup="true"
+                role="tooltip"
+                class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="registerForm.get('password').invalid && registerForm.get('password').touched">
+                <input class="password" type="password" id="register_password" placeholder="Password" formControlName="password">
+                <span class="tooltip-content">
+                    {{getPasswordError()}}
+                </span>
+            </label>
 
-            <mat-form-field class="margin-bottom" style="width: 100%">
-              <input type="password" matInput placeholder="Password" formControlName="password">
-              <mat-error *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
-                {{getPasswordError()}}
-              </mat-error>
-            </mat-form-field>
+            <label for="register_email"
+                aria-haspopup="true"
+                role="tooltip"
+                class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="registerForm.get('email').invalid && registerForm.get('email').touched">
+                <input class="username" type="text" id="register_email" placeholder="Email" formControlName="email">
+                <span class="tooltip-content">
+                    {{getEmailError()}}
+                </span>
+            </label>
 
-            <mat-form-field class="margin-bottom" style="width: 100%">
-              <input matInput placeholder="Email" formControlName="email">
-              <mat-error *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
-                {{getEmailError()}}
-              </mat-error>
-            </mat-form-field>
+            <div class="error active" *ngIf="errorMessage">
+                {{errorMessage.message}}
+            </div>
 
-        <div fxLayoutAlign="center" class="margin-top">
-          <button mat-raised-button color="accent" (click)="submitRegistration()">Register</button>
+            <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+            <a routerLink="/login" class="signup">Login</a>
         </div>
-
-      </form>
-    </mat-card-content>
-  </mat-card>
-  </div>
-  <div fxFlex></div>
+    </form>
 </div>

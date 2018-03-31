@@ -1,83 +1,32 @@
-<header>
-  <nav fxHide fxShow.gt-sm>
-    <mat-toolbar color="primary">
-      <img src="/images/logo.png" srcset="" alt="Xenos" />
-      <button mat-button routerLink="home">
-        Home
+<clr-header class="header-4">
+  <div class="branding">
+      <a routerLink="home" class="nav-link">
+          <clr-icon shape="home" class="is-solid" style="color: white;"></clr-icon>
+          <span class="title">Xenos</span>
+      </a>
+  </div>
+  <div class="header-nav" [clr-nav-level]="1">
+      <a routerLink="home" class="nav-link"><span class="nav-text">Home</span></a>
+      <a routerLink="propertyList" class="nav-link"><span class="nav-text">Listings</span></a>
+  </div>
+  <div class="header-actions">
+      
+    <a class="nav-link nav-text" *ngIf="loggedIn">
+        {{user}}
+    </a>
+    <clr-dropdown >
+      <button class="nav-icon" clrDropdownTrigger>
+          <clr-icon shape="user"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
       </button>
-      <button mat-button routerLink="propertyList">
-        Listings
-      </button>
-      <button mat-button routerLink="seller">
-        Seller/Landlord Tools
-      </button>
-      <div class="flex-spacer" style="flex: 1 1 auto"></div>
-      <div *ngIf="!this.loggedIn">
-        <button mat-button [matMenuTriggerFor]="login">
-          My Xenos
-        </button>
-        <mat-menu #login="matMenu">
-          <button mat-menu-item routerLink="register">
-            Register
-          </button>
-          <button mat-menu-item routerLink="login">
-            Login
-          </button>
-        </mat-menu>
-      </div>
-      <div *ngIf="this.loggedIn">
-        <button mat-button routerLink="propertyEdit">
-          Add New Listing
-        </button>
-        <button mat-button [matMenuTriggerFor]="login">
-          Welcome, {{user}}
-        </button>
-        <mat-menu #login="matMenu">
-          <button mat-menu-item (click)="logout()">
-            Logout
-          </button>
-        </mat-menu>
-      </div>
-    </mat-toolbar>
-  </nav>
 
-  <nav fxHide fxShow.lt-sm>
-    <mat-toolbar color="primary">
-
-      <mat-menu #mobileMenu="matMenu">
-        <button mat-menu-item routerLink="home">
-          Home
-        </button>
-        <button mat-menu-item routerLink="propertyList">
-          Listings
-        </button>
-        <div *ngIf="!this.loggedIn">
-          <button mat-menu-item routerLink="register">
-            Register
-          </button>
-          <button mat-menu-item routerLink="login">
-            Login
-          </button>
-        </div>
-        <div *ngIf="this.loggedIn">
-          <button mat-menu-item routerLink="propertyEdit">
-            Add New Listing
-          </button>
-          <button mat-button routerLink="seller">
-            Seller/Landlord Tools
-          </button>
-          <button mat-menu-item (click)="logout()">
-            Logout
-          </button>
-        </div>
-      </mat-menu>
-
-      <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
-        <mat-icon>reorder</mat-icon>
-      </button>
-      <img src="/images/logo.png" srcset="" alt="Xenos" />
-    </mat-toolbar>
-
-  </nav>
-
-</header>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a *ngIf="!loggedIn" routerLink="login" clrDropdownItem>Login</a>        
+        <a *ngIf="!loggedIn" routerLink="register" clrDropdownItem>Register</a>        
+        <a *ngIf="loggedIn" routerLink="propertyEdit" clrDropdownItem>Add New Listing</a>
+        <a *ngIf="loggedIn" clrDropdownItem (click)="logout()">Log out</a> 
+      </clr-dropdown-menu>
+      
+    </clr-dropdown>
+  </div>
+</clr-header>

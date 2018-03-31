@@ -39,8 +39,8 @@ export class EditpropertyComponent implements OnInit {
       country: ['', Validators.required],
       postalCode: ['', Validators.required],
       tenants: ['', Validators.required],
-      monthlyRate: ['', Validators.required],
-      expenses: ['', Validators.required],
+      //monthlyRate: ['', Validators.required],
+      //expenses: ['', Validators.required],
     });
   }
 
