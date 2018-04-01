@@ -10,6 +10,32 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
+  },
+  "/payment/*": {
+    "target": "http://rental.jakeojero.me",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/user/resetPassword": {
+    "target": "http://rental.jakeojero.me",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/user/validateResetToken": {
+    "target": "http://rental.jakeojero.me",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/user/updatePassword": {
+    "target": "http://rental.jakeojero.me",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 
+
 }
+
