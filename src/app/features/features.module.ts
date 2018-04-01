@@ -1,3 +1,4 @@
+import { PasswordService } from './reset/password.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -26,6 +27,10 @@ import { EditpropertyService } from './editproperty/editproperty.service';
 import { NavbarService } from './navbar/navbar.service';
 import { SignupComponent } from './premium/signup/signup.component';
 import { DashboardComponent } from './premium/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './reset/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './reset/change-password/change-password.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService } from './spinner/spinner.service';
 
 
 @NgModule({
@@ -52,6 +57,9 @@ import { DashboardComponent } from './premium/dashboard/dashboard.component';
     EditpropertyComponent,
     SignupComponent,
     DashboardComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    SpinnerComponent,
 
   ],
   exports: [
@@ -61,7 +69,8 @@ import { DashboardComponent } from './premium/dashboard/dashboard.component';
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    PropertyPipe
+    PropertyPipe,
+    SpinnerComponent
   ],
   providers: [
     LoginService,
@@ -70,7 +79,9 @@ import { DashboardComponent } from './premium/dashboard/dashboard.component';
     PropertylistService,
     AuthenticationGuard,
     EditpropertyService,
-    NavbarService
+    NavbarService,
+    PasswordService,
+    SpinnerService
   ]
 })
 export class FeaturesModule { }

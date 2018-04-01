@@ -1,3 +1,5 @@
+import { ChangePasswordComponent } from './../features/reset/change-password/change-password.component';
+import { ForgotPasswordComponent } from './../features/reset/forgot-password/forgot-password.component';
 import { DashboardComponent } from './../features/premium/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,6 +24,8 @@ const appRoutes: Routes = [
   { path: 'propertyEdit', component: EditpropertyComponent },
   { path: 'premium-signup', component: SignupComponent },
   { path: 'landlord-dashboard', component: DashboardComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'user/changePassword/:user/:token', component: ChangePasswordComponent },
 
 ];
 

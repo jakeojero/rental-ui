@@ -4,6 +4,7 @@ import { AlertService } from './../../alert/alert.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavbarService } from '../../navbar/navbar.service';
+import { SpinnerService } from '../../spinner/spinner.service';
 declare var Stripe: any;
 
 function _window(): any {
@@ -22,7 +23,11 @@ export class SignupComponent implements OnInit, OnDestroy {
   user;
   stripe: any;
   elements: any;
-  constructor(private http: HttpClient, private alert: AlertService, private router: Router, private navbar: NavbarService) { }
+  constructor(private http: HttpClient,
+              private alert: AlertService,
+              private router: Router,
+              private navbar: NavbarService,
+              private spinner: SpinnerService) { }
 
   ngOnInit() {
     const window = _window();
@@ -88,6 +93,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   chargeCard(token) {
+    this.spinner.spin();
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`,
       'token': `${token.id}`,
@@ -97,6 +103,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.http.post('/payment/charge', {}, {headers: headers})
       .subscribe(resp => this.onPaymentComplete(resp),
       err => {
+        this.spinner.hide();
         if(err.error.message) {
           this.alert.error(err.error.message, 5000, false);
         }
@@ -108,6 +115,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onPaymentComplete(res) {
+    this.spinner.hide();
     this.alert.info(res.outcome.sellerMessage, 5000, true);
     this.navbar.addPremiumToUser(true);
     this.router.navigate(['/home']);

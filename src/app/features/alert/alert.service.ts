@@ -16,10 +16,8 @@ export class AlertService {
       if (event instanceof NavigationStart) {
         if (this.keepAfterRouteChange) {
           // only keep for a single route change
-          console.log('route changed');
           this.keepAfterRouteChange = false;
         } else {
-          console.log('clearing');
           this.clear();
         }
       }

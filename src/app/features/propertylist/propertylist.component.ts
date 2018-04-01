@@ -6,6 +6,7 @@ import {PropertydetailsComponent} from '../propertydetails/propertydetails.compo
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/timeInterval';
 import 'rxjs/add/operator/mergeMap';
+import { SpinnerService } from '../spinner/spinner.service';
 
 
 @Component({
@@ -33,13 +34,15 @@ export class PropertylistComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private propertylistService: PropertylistService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private spinner: SpinnerService) { }
 
   ngOnInit() {
     // Load properties
+    this.spinner.spin();
     this.propertylistService.getProperties().subscribe(properties => {
       this.properties = properties.body;
-
+      this.spinner.hide();
       this.stream = this.propertylistService.observeMessages('/api/properties/stream')
         .subscribe((stream) => {
 
@@ -50,7 +53,6 @@ export class PropertylistComponent implements OnInit, OnDestroy {
         });
 
         if (found === undefined) {
-          console.log(`Adding property`)
           this.properties.push(property);
         }
       });
@@ -75,12 +77,6 @@ export class PropertylistComponent implements OnInit, OnDestroy {
   }
 
   openDetails(property) {
-    console.log(property);
-    // this.dialog.open(PropertydetailsComponent, {
-    //   data: {
-    //     property
-    //   }
-    // });
     this.selectedProperty = property;
     this.openModal = true;
   }

@@ -20,10 +20,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
-    const user = JSON.parse(window.localStorage.getItem('user'));
-    console.log('navbar init');
-    console.log(user);
-    if (user) {
+    const userStorage = window.localStorage.getItem('user');
+    const user = userStorage !== 'undefined' ? JSON.parse(userStorage) : undefined;
+
+    if (user !== undefined) {
       this.navService.updateUser(user);
     }
 

@@ -1,3 +1,4 @@
+import { SpinnerService } from './../spinner/spinner.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoginUser } from '../../core/shared/models/LoginUser';
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private alert: AlertService,
-    private navService: NavbarService) {
+    private navService: NavbarService,
+    private spinner: SpinnerService) {
     this.loginForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin(): void {
+    this.spinner.spin();
     if (this.loginForm.dirty && this.loginForm.valid) {
       this.loginUser = new LoginUser(
         this.loginForm.get('username').value,
@@ -63,10 +66,9 @@ export class LoginComponent implements OnInit {
 
   onSaveComplete(res): void {
 
+    this.spinner.hide();
     const user: User = res.body;
     window.localStorage.setItem('token', res.headers.get('X-AUTH-TOKEN'));
-    window.localStorage.setItem('username', res.body.username);
-    window.localStorage.setItem('email', res.body.email);
     window.localStorage.setItem('user', JSON.stringify(res.body));
 
     // save user name and roles here which will dictate what you display on a screen
@@ -79,6 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleError(response: HttpErrorResponse) {
+    this.spinner.hide();
     if (response.status === 400) {
       this.errorMessage = 'Invalid Credentials';
     }

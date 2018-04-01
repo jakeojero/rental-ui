@@ -1,3 +1,5 @@
+import { AlertService } from './../alert/alert.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './../../core/shared/models/User';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
@@ -9,7 +11,7 @@ export class NavbarService {
 
   private user = new BehaviorSubject<User>(undefined);
 
-  constructor() { }
+  constructor(private http: HttpClient, private alert: AlertService) { }
 
   getUser(): Observable<User> {
     return this.user.asObservable();
@@ -22,8 +24,18 @@ export class NavbarService {
 
   addPremiumToUser(prem: boolean) {
     const u = this.user.getValue();
-    u.premium = prem;
+    u.isPremium = prem;
+    u.roles.push('ROLE_LANDLORD');
     window.localStorage.setItem('user', JSON.stringify(u));
+
+    const headers = new HttpHeaders({
+      'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`,
+    });
+
+    this.http.post('/payment/save', u, {observe: 'response', headers: headers}).subscribe(
+       res => { console.log(res);},
+       err => {this.alert.error('Error adding premium to user. Please contact us to add it manually', 10000, true);
+    });
     this.user.next(u);
   }
 }
