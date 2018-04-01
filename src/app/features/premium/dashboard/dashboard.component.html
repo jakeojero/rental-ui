@@ -1,70 +1,27 @@
-
-<div class="content-container">
-   
-
-<clr-vertical-nav [clrVerticalNavCollapsible]="demoCollapsible">
-    <clr-vertical-nav-group
-            routerLinkActive="active">
-        <a routerLink="./normal" hidden aria-hidden="true">
-        </a>
-        <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
-        Normal
-        <clr-vertical-nav-group-children *clrIfExpanded="true">
-            <a clrVerticalNavLink
-               routerLink="./normal/pidgey"
-               routerLinkActive="active">
-                Pidgey
-            </a>
-            <a clrVerticalNavLink
-               routerLink="./normal/snorlax"
-               routerLinkActive="active">
-                Snorlax
-            </a>
-        </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
-    <clr-vertical-nav-group
-            routerLinkActive="active">
-        <a routerLink="./fire" hidden aria-hidden="true">
-        </a>
-        <clr-icon shape="flame" clrVerticalNavIcon></clr-icon>
-        Fire
-        <clr-vertical-nav-group-children *clrIfExpanded>
-            <a clrVerticalNavLink
-               routerLink="./fire/charmander"
-               routerLinkActive="active">
-                Charmander
-            </a>
-            <a clrVerticalNavLink
-               routerLink="./fire/charizard"
-               routerLinkActive="active">
-                Charizard
-            </a>
-        </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
-    <clr-vertical-nav-group
-            routerLinkActive="active">
-        <a routerLink="./electric" hidden aria-hidden="true">
-        </a>
-        <clr-icon shape="bolt" clrVerticalNavIcon></clr-icon>
-        Electric
-        <clr-vertical-nav-group-children *clrIfExpanded>
-            <a clrVerticalNavLink
-               routerLink="./electric/pikachu"
-               routerLinkActive="active">
-                Pikachu
-            </a>
-            <a clrVerticalNavLink
-               routerLink="./electric/raichu"
-               routerLinkActive="active">
-                Raichu
-            </a>
-        </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
-    <a clrVerticalNavLink routerLinkActive="active" routerLink="./credit">
-        <clr-icon shape="certificate" clrVerticalNavIcon></clr-icon>
-        Credit
-    </a>
-</clr-vertical-nav>
-
-
-</div>
+<clr-main-container>    
+        <div class="content-container">
+            <main class="content-area" style="padding-top: 0;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </main>
+            <nav class="sidenav" [clr-nav-level]="2">
+                    <section class="sidenav-content" style="padding-bottom: 0;">
+                        <section class="nav-group collapsible">
+                            <input id="tabexample1" type="checkbox">
+                            <label for="tabexample1">Landlord Menu</label>
+                            <ul class="nav-list">
+                                <li><a class="nav-link" routerLink="expenses">Expenses</a></li>
+                                <li><a class="nav-link" routerLink="tenants">Tenants</a></li>
+                                <li><a class="nav-link" routerLink="properties">Properties</a></li>
+                            </ul>
+                        </section>
+                    </section>
+                </nav>
+        </div>
+    
+    </clr-main-container>
+    
+    

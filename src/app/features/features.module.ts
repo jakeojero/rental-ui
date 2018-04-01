@@ -31,6 +31,10 @@ import { ForgotPasswordComponent } from './reset/forgot-password/forgot-password
 import { ChangePasswordComponent } from './reset/change-password/change-password.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './spinner/spinner.service';
+import { ExpensesComponent } from './premium/dashboard/expenses/expenses.component';
+import { PropertiesComponent } from './premium/dashboard/properties/properties.component';
+import { TenantsComponent } from './premium/dashboard/tenants/tenants.component';
+import { DashboardHomeComponent } from './premium/dashboard/dashboard-home/dashboard-home.component';
 
 
 @NgModule({
@@ -60,6 +64,10 @@ import { SpinnerService } from './spinner/spinner.service';
     ForgotPasswordComponent,
     ChangePasswordComponent,
     SpinnerComponent,
+    ExpensesComponent,
+    PropertiesComponent,
+    TenantsComponent,
+    DashboardHomeComponent,
 
   ],
   exports: [

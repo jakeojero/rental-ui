@@ -1,3 +1,6 @@
+import { DashboardHomeComponent } from './../features/premium/dashboard/dashboard-home/dashboard-home.component';
+import { TenantsComponent } from './../features/premium/dashboard/tenants/tenants.component';
+import { ExpensesComponent } from './../features/premium/dashboard/expenses/expenses.component';
 import { ChangePasswordComponent } from './../features/reset/change-password/change-password.component';
 import { ForgotPasswordComponent } from './../features/reset/forgot-password/forgot-password.component';
 import { DashboardComponent } from './../features/premium/dashboard/dashboard.component';
@@ -12,6 +15,7 @@ import { PropertydetailsComponent } from '../features/propertydetails/propertyde
 import {AuthenticationGuard} from '../features/guards/AuthenticationGuard';
 import { EditpropertyComponent } from '../features/editproperty/editproperty.component';
 import { SignupComponent } from '../features/premium/signup/signup.component';
+import { PropertiesComponent } from '../features/premium/dashboard/properties/properties.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +27,14 @@ const appRoutes: Routes = [
   { path: 'propertyDetail', component: PropertydetailsComponent },
   { path: 'propertyEdit', component: EditpropertyComponent },
   { path: 'premium-signup', component: SignupComponent },
-  { path: 'landlord-dashboard', component: DashboardComponent },
+  { path: 'landlord-dashboard', component: DashboardComponent,
+    children: [
+      { path: '', component: DashboardHomeComponent },
+      { path: 'expenses', component: ExpensesComponent },
+      { path: 'tenants', component: TenantsComponent },
+      { path: 'properties', component: PropertiesComponent }
+    ]
+  },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'user/changePassword/:user/:token', component: ChangePasswordComponent },
 
