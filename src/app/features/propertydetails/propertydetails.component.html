@@ -1,16 +1,26 @@
-<h2 mat-dialog-title>{{data.property.locator.address}}</h2>
-<mat-dialog-content>
-  <br /><b>Title:</b> {{data.property.title}}
-  <br /><b>Posted By:</b> {{data.property.user?.username}}
-  <br /><b>Rooms:</b> {{data.property.rooms}}
-  <br /><b>Rate:</b> {{data.property.price}}
-  <br /><b>City:</b> {{data.property.locator.city}}
-  <br /><b>Province:</b> {{data.property.locator.province}}
-  <br /><b>PostalCode:</b> {{data.property.locator.postalCode}}
-  <br />
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close >Update</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button [mat-dialog-close]="true">Delete</button>
-</mat-dialog-actions>
+<!-- <h2 mat-dialog-title>{{property.locator.address}}</h2>
+
+  <br /><b>Title:</b> {{property.title}}
+  <br /><b>Posted By:</b> {{property.user?.username}}
+  <br /><b>Rooms:</b> {{property.rooms}}
+  <br /><b>Rate:</b> {{property.price}}
+  <br /><b>City:</b> {{property.locator.city}}
+  <br /><b>Province:</b> {{property.locator.province}}
+  <br /><b>PostalCode:</b> {{property.locator.postalCode}}
+  <br /> -->
+
+
+  <div class="card">
+    <div class="card-header">
+        {{property.locator.address}}, {{property.locator.city}}, {{property.locator.province}}
+    </div>
+    <div class="card-block">
+      <br /><b>Rooms:</b> {{property.rooms}}
+      <br /><b>Rate:</b> {{property.price}}
+    </div>
+    <div class="card-footer">
+        Posted By: {{property.user?.username}}
+        <a class="btn btn-sm" href="mailto:{{property.user?.email}}">Inquire</a>
+    </div>
+</div>
+

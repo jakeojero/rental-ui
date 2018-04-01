@@ -2,11 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginUser } from '../../core/shared/models/LoginUser';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
 import 'rxjs/RX';
 import { environment } from '../../../environments/environment';
 
@@ -27,6 +22,8 @@ export class LoginService {
     return this.httpClient.get(`/api/auth/login`, {observe: 'response', headers: headers});
 
   }
+
+  logout() {}
 
 
 }

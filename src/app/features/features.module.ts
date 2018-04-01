@@ -24,6 +24,8 @@ import {PropertyPipe} from './propertylist/PropertyPipe';
 import { EditpropertyComponent } from './editproperty/editproperty.component';
 import { EditpropertyService } from './editproperty/editproperty.service';
 import { NavbarService } from './navbar/navbar.service';
+import { SignupComponent } from './premium/signup/signup.component';
+import { DashboardComponent } from './premium/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { NavbarService } from './navbar/navbar.service';
     AlertComponent,
     PropertyPipe,
     EditpropertyComponent,
+    SignupComponent,
+    DashboardComponent,
 
   ],
   exports: [

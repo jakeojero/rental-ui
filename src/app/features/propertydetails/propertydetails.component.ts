@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Input} from '@angular/core';
 import { Property } from '../../core/shared/models/Property';
 import { PropertyDetails } from '../../core/shared/models/PropertyDetails';
 import { Locator } from '../../core/shared/models/Locator';
@@ -11,7 +11,8 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 })
 export class PropertydetailsComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  @Input() property: Property;
+  constructor() { }
 
   ngOnInit() {
   }

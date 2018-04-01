@@ -18,6 +18,8 @@ export class PropertylistComponent implements OnInit, OnDestroy {
   searchBy: string;
   search: string;
   stream;
+  openModal = false;
+  selectedProperty;
 
   properties: any = [];
   property: Property;
@@ -47,7 +49,7 @@ export class PropertylistComponent implements OnInit, OnDestroy {
           return prop.id === property.id;
         });
 
-        if(found === undefined) {
+        if (found === undefined) {
           console.log(`Adding property`)
           this.properties.push(property);
         }
@@ -59,8 +61,9 @@ export class PropertylistComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.stream)
+    if (this.stream) {
       this.stream.unsubscribe();
+    }
   }
 
   onSearchChange($event) {
@@ -71,12 +74,14 @@ export class PropertylistComponent implements OnInit, OnDestroy {
     this.searchBy = $event;
   }
 
-  openDetails(property: Property) {
+  openDetails(property) {
     console.log(property);
-    this.dialog.open(PropertydetailsComponent, {
-      data: {
-        property
-      }
-    });
+    // this.dialog.open(PropertydetailsComponent, {
+    //   data: {
+    //     property
+    //   }
+    // });
+    this.selectedProperty = property;
+    this.openModal = true;
   }
 }

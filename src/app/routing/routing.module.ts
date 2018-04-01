@@ -1,3 +1,4 @@
+import { DashboardComponent } from './../features/premium/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,6 +9,7 @@ import { PropertylistComponent } from '../features/propertylist/propertylist.com
 import { PropertydetailsComponent } from '../features/propertydetails/propertydetails.component';
 import {AuthenticationGuard} from '../features/guards/AuthenticationGuard';
 import { EditpropertyComponent } from '../features/editproperty/editproperty.component';
+import { SignupComponent } from '../features/premium/signup/signup.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +20,8 @@ const appRoutes: Routes = [
   { path: 'propertyList', component: PropertylistComponent },
   { path: 'propertyDetail', component: PropertydetailsComponent },
   { path: 'propertyEdit', component: EditpropertyComponent },
+  { path: 'premium-signup', component: SignupComponent },
+  { path: 'landlord-dashboard', component: DashboardComponent },
 
 ];
 

@@ -7,6 +7,7 @@ import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/ht
 import { XenosError } from '../../core/shared/models/XenosError';
 import { AlertService } from '../alert/alert.service';
 import { NavbarService } from '../navbar/navbar.service';
+import { User } from '../../core/shared/models/User';
 
 @Component({
   selector: 'app-login',
@@ -61,13 +62,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSaveComplete(res): void {
-    this.alert.info('Login Successful', 5000, true);
+
+    const user: User = res.body;
     window.localStorage.setItem('token', res.headers.get('X-AUTH-TOKEN'));
     window.localStorage.setItem('username', res.body.username);
     window.localStorage.setItem('email', res.body.email);
+    window.localStorage.setItem('user', JSON.stringify(res.body));
+
     // save user name and roles here which will dictate what you display on a screen
     this.loginForm.reset();
-    this.navService.updateLoggedInStatus(true);
+    this.navService.updateUser(user);
+
+    // Show alert and navigate
+    this.alert.info('Login Successful', 5000, true);
     this.router.navigate(['home']);
   }
 
