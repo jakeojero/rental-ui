@@ -22,18 +22,6 @@ export class PremiumService {
       this.user = user;
     });
 
-    this.getProperties().subscribe((properties: Property[]) => {
-      this.properties.next(properties);
-      this.spinner.hide();
-    },
-    (error: HttpErrorResponse) => {
-      if(error.status === 400) {
-        this.alert.error('Your session has ended. Please Log in.', 7500, true);
-        this.router.navigate(['login']);
-      }
-      this.spinner.hide();
-    })
-
   }
 
   getProperties() {
@@ -85,9 +73,12 @@ export class PremiumService {
     return this.http.post(`/api/expenses/save`, expense, {headers: headers});
   }
 
+  getPropertiesSubject() {
+    return this.properties;
+  }
+
   getListOfProperties() {
     return this.properties.asObservable();
   }
-
   
 }
