@@ -35,6 +35,7 @@ import { ExpensesComponent } from './premium/dashboard/expenses/expenses.compone
 import { PropertiesComponent } from './premium/dashboard/properties/properties.component';
 import { TenantsComponent } from './premium/dashboard/tenants/tenants.component';
 import { DashboardHomeComponent } from './premium/dashboard/dashboard-home/dashboard-home.component';
+import { PremiumService } from './premium/dashboard/premium.service';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { DashboardHomeComponent } from './premium/dashboard/dashboard-home/dashb
     EditpropertyService,
     NavbarService,
     PasswordService,
-    SpinnerService
+    SpinnerService,
+    PremiumService
   ]
 })
 export class FeaturesModule { }

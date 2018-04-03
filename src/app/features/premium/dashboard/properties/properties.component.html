@@ -4,8 +4,25 @@
         <clr-icon shape="home"></clr-icon>
         Dashboard Home
     </button>
-    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12">
-        <clr-icon shape="cog"></clr-icon>
-        Settings
-    </button>
-  </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" *ngFor="let property of properties">
+        <app-property (click)="openDetails(property)" [property]="property"></app-property>
+    </div>
+</div>
+
+
+<clr-modal [(clrModalOpen)]="openModal" [clrModalSize]="'lg'">
+    <h3 class="modal-title">{{selectedProperty?.title}}</h3>
+    <div class="modal-body">
+        <app-propertydetails *ngIf="selectedProperty" [property]="selectedProperty" [editable]="true"></app-propertydetails>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openModal = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="openModal = false">Ok</button>
+    </div>
+</clr-modal>
+
+

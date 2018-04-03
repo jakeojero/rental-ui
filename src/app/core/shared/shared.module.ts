@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ClarityModule } from '@clr/angular';
+import { PremiumGuard } from './gaurds/premium-guard';
 
 @NgModule({
   imports: [
@@ -41,6 +42,9 @@ import { ClarityModule } from '@clr/angular';
     FlexLayoutModule,
     MatGridListModule,
     ClarityModule
+  ],
+  providers: [
+    PremiumGuard
   ],
   declarations: [],
   exports: [CommonModule,

@@ -12,6 +12,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 export class PropertydetailsComponent implements OnInit {
 
   @Input() property: Property;
+  @Input() editable: boolean;
   constructor() { }
 
   ngOnInit() {

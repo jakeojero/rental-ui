@@ -8,6 +8,8 @@ import { XenosError } from '../../core/shared/models/XenosError';
 import { AlertService } from '../alert/alert.service';
 import { PropertyDetails } from '../../core/shared/models/PropertyDetails';
 import { Locator } from '../../core/shared/models/Locator';
+import { NavbarService } from '../navbar/navbar.service';
+import { User } from '../../core/shared/models/User';
 
 
 @Component({
@@ -22,11 +24,17 @@ export class EditpropertyComponent implements OnInit {
   locator: Locator;
   propertyForm: FormGroup;
   errorMessage: XenosError;
+  user: User;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder,
     private editpropertyservice: EditpropertyService,
     private router: Router,
-    private alert: AlertService) {
+    private alert: AlertService,
+    private navbar: NavbarService) {
+
+    this.navbar.getUser().subscribe(user => {
+      this.user = user;
+    });
 
     this.propertyForm = fb.group({
       title: ['', Validators.required],
@@ -102,7 +110,7 @@ export class EditpropertyComponent implements OnInit {
       this.property.locator.country = this.propertyForm.get('country').value;
       this.property.locator.postalCode = this.propertyForm.get('postalCode').value;
 
-      this.editpropertyservice.submitProperty(this.property, window.localStorage.getItem('username')).subscribe(
+      this.editpropertyservice.submitProperty(this.property, this.user.username).subscribe(
         (res) => this.onSubmitComplete(res),
         (error: HttpErrorResponse) => this.handleError(error)
       );

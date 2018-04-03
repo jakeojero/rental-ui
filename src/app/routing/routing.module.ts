@@ -16,6 +16,7 @@ import {AuthenticationGuard} from '../features/guards/AuthenticationGuard';
 import { EditpropertyComponent } from '../features/editproperty/editproperty.component';
 import { SignupComponent } from '../features/premium/signup/signup.component';
 import { PropertiesComponent } from '../features/premium/dashboard/properties/properties.component';
+import { PremiumGuard } from '../core/shared/gaurds/premium-guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,7 +28,7 @@ const appRoutes: Routes = [
   { path: 'propertyDetail', component: PropertydetailsComponent },
   { path: 'propertyEdit', component: EditpropertyComponent },
   { path: 'premium-signup', component: SignupComponent },
-  { path: 'landlord-dashboard', component: DashboardComponent,
+  { path: 'landlord-dashboard', component: DashboardComponent, canActivate: [PremiumGuard],
     children: [
       { path: '', component: DashboardHomeComponent },
       { path: 'expenses', component: ExpensesComponent },
