@@ -10,7 +10,7 @@
       
       <div class="col-xs-12">
       
-      <form>
+        <form [formGroup]="tenantForm">
               <section class="form-block">
                   <label>Create Tenant</label>
                   <div class="form-group row">
@@ -18,10 +18,10 @@
                           <label for="gForm_1">Tenant</label>
                       </div>
                       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                          <input class="form-control" type="text" id="gForm_1" placeholder="First Name" size="45">
+                          <input class="form-control" type="text" id="gForm_1" placeholder="First Name" size="45" formControlName="firstname">
                       </div>
                       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <input class="form-control" type="text" id="gForm_2" placeholder="Last Name" size="45">
+                            <input class="form-control" type="text" id="gForm_2" placeholder="Last Name" size="45" formControlName="lastname">
                       </div>
                   </div>
                   <div class="form-group row">
@@ -30,17 +30,39 @@
                       </div>
                       <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
                           <div class="select form-control">
-                              <select id="gForm_3">
-                                  <option [value]="property" *ngFor="let property of properties">{{property.title}}</option>
+                              <select id="gForm_3" formControlName="property">
+                                  <option *ngFor="let property of properties" [ngValue]="property">{{property.title}}</option>
                               </select>
                           </div>
                       </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Add Tenant</button>
+                  <button type="submit" class="btn btn-primary" (click)="saveTenant()">Add Tenant</button>
               </section>
           </form>
           
       </div>
       </div>
+
+      
+
+        <div class="row">
+            <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12" *ngFor="let tenant of tenants">
+                <div class="card">
+                    <div class="card-header">
+                        {{tenant.firstname}}, {{tenant.lastname}}
+                    </div>
+                    <div class="card-block">
+                        <div class="card-title">
+                            {{tenant.property.locator.address}}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-link" (click)="deleteTenant(tenant)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
           
       
