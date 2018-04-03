@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label [attr.for]="formValue">{{label}}</label>
+    <label [attr.for]="formValue"
+        aria-haspopup="true"
+        role="tooltip"
+        class="tooltip tooltip-validation tooltip-sm"
+        [class.invalid]="form.get(formValue).invalid && form.get(formValue).touched">
+        <input [id]="formValue" type="text" [placeholder]="formValue" [formControlName]="formValue">
+        <span class="tooltip-content">
+            {{error}}
+        </span>
+    </label>
+</div>

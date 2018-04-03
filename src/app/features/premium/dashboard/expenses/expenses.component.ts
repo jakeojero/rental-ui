@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PremiumService } from '../premium.service';
 
 @Component({
   selector: 'app-expenses',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpensesComponent implements OnInit {
 
-  constructor() { }
+  properties = [];
+  constructor(private premiumService: PremiumService) { 
+
+  }
 
   ngOnInit() {
+    this.premiumService.getListOfProperties().subscribe(
+      properties => {
+        this.properties = properties;
+      }
+    )
   }
 
 }

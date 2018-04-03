@@ -7,7 +7,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
-import 'rxjs/RX';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/timeInterval';
 import 'rxjs/add/operator/mergeMap';

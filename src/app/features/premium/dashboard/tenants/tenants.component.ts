@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PremiumService } from '../premium.service';
 
 @Component({
   selector: 'app-tenants',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TenantsComponent implements OnInit {
 
-  constructor() { }
+  properties = <any>[];
+  constructor(private premiumService: PremiumService) { }
 
   ngOnInit() {
+    this.premiumService.getListOfProperties().subscribe(
+      properties => {
+        this.properties = properties;
+      }
+    )
   }
 
 }

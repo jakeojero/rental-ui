@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, Input} from '@angular/core';
+import {Component, Inject, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Property } from '../../core/shared/models/Property';
 import { PropertyDetails } from '../../core/shared/models/PropertyDetails';
 import { Locator } from '../../core/shared/models/Locator';

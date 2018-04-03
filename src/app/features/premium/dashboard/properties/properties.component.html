@@ -15,13 +15,9 @@
 
 
 <clr-modal [(clrModalOpen)]="openModal" [clrModalSize]="'lg'">
-    <h3 class="modal-title">{{selectedProperty?.title}}</h3>
+    <h3 class="modal-title">Edit Property</h3>
     <div class="modal-body">
-        <app-propertydetails *ngIf="selectedProperty" [property]="selectedProperty" [editable]="true"></app-propertydetails>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="openModal = false">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="openModal = false">Ok</button>
+        <app-propertydetails *ngIf="selectedProperty" [property]="selectedProperty" [editable]="true" (onSubmit)="onUpdate($event)"></app-propertydetails>
     </div>
 </clr-modal>
 

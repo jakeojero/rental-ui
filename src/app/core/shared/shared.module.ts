@@ -19,6 +19,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ClarityModule } from '@clr/angular';
 import { PremiumGuard } from './gaurds/premium-guard';
+import { TextEntryComponent } from './components/text-entry/text-entry.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { PremiumGuard } from './gaurds/premium-guard';
   providers: [
     PremiumGuard
   ],
-  declarations: [],
+  declarations: [TextEntryComponent],
   exports: [CommonModule,
     MatInputModule,
     MatButtonModule,
@@ -66,7 +67,8 @@ import { PremiumGuard } from './gaurds/premium-guard';
     HttpClientModule,
     FlexLayoutModule,
     MatGridListModule,
-    ClarityModule
+    ClarityModule,
+    TextEntryComponent
   ]
 })
 export class SharedModule { }

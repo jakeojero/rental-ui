@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Output } from '@angular/core';
+import { Component, OnInit, Inject, Output, Input, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Property } from '../../core/shared/models/Property';
 import { Router } from '@angular/router';
@@ -46,7 +46,7 @@ export class EditpropertyComponent implements OnInit {
       province: ['', Validators.required],
       country: ['', Validators.required],
       postalCode: ['', Validators.required],
-      tenants: ['', Validators.required],
+      //tenants: ['', Validators.required],
       //monthlyRate: ['', Validators.required],
       //expenses: ['', Validators.required],
     });
@@ -93,17 +93,12 @@ export class EditpropertyComponent implements OnInit {
   }
 
   submitProperty() {
-    if (this.propertyForm.dirty && this.propertyForm.valid) {
       this.property = new Property();
-      // this.property.details = new PropertyDetails();
       this.property.locator = new Locator();
       this.property.title = this.propertyForm.get('title').value;
       this.property.rooms = +this.propertyForm.get('rooms').value;
       this.property.price = +this.propertyForm.get('price').value;
       this.property.notes.push(this.propertyForm.get('notes').value);
-      // this.property.details.amountOfTenants = this.propertyForm.get('tenants').value;
-      // this.property.details.expenses = this.propertyForm.get('expenses').value;
-      // this.property.details.monthlyRate = this.propertyForm.get('monthlyRate').value;
       this.property.locator.address = this.propertyForm.get('address').value;
       this.property.locator.city = this.propertyForm.get('city').value;
       this.property.locator.province = this.propertyForm.get('province').value;
@@ -114,7 +109,8 @@ export class EditpropertyComponent implements OnInit {
         (res) => this.onSubmitComplete(res),
         (error: HttpErrorResponse) => this.handleError(error)
       );
-    }
+      
+
   }
   onSubmitComplete(res): void {
     this.propertyForm.reset();

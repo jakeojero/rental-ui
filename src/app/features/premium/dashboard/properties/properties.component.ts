@@ -21,19 +21,9 @@ export class PropertiesComponent implements OnInit {
               private spinner: SpinnerService) { }
 
   ngOnInit() {
-    this.spinner.spin();
-    this.premiumService.getProperties().subscribe(
-      response => {
-        this.spinner.hide()
-        this.properties = response;
-      },
-      (error: HttpErrorResponse) => {
-        if(error.status === 400) {
-          this.alert.error('Your session has ended. Please Log in.', 7500, true);
-          this.router.navigate(['login']);
-        }
-        this.spinner.hide();
-        console.log(error);
+    this.premiumService.getListOfProperties().subscribe(
+      properties => {
+        this.properties = properties;
       }
     )
 
@@ -42,6 +32,10 @@ export class PropertiesComponent implements OnInit {
   openDetails(property) {
     this.selectedProperty = property;
     this.openModal = true;
+  }
+  
+  onUpdate(event) {
+    console.log(event);
   }
 
 }

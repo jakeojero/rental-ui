@@ -4,8 +4,50 @@
       <clr-icon shape="home"></clr-icon>
       Dashboard Home
   </button>
-  <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12">
-      <clr-icon shape="cog"></clr-icon>
-      Settings
-  </button>
 </div>
+
+<div class="row">
+
+<div class="col-xs-12">
+
+<form>
+        <section class="form-block">
+            <label>Create Expense</label>
+            <div class="form-group row">
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                    <label for="gForm_1">Expense</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <input class="form-control" type="text" id="gForm_1" placeholder="Enter value here" size="45">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <input class="form-control" type="date" id="gForm_2" clrDate>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                    <label for="gForm_3">Property</label>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
+                    <div class="select form-control">
+                        <select id="gForm_3">
+                            <option [value]="property" *ngFor="let property of properties">{{property.title}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                        <label for="gForm_4">Cost $</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <input class="form-control" type="text" id="gForm_4" placeholder="Cost">
+                    </div>
+                </div>
+            <button type="submit" class="btn btn-primary">Add Expense</button>
+        </section>
+    </form>
+    
+</div>
+</div>
+    
