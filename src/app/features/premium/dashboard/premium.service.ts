@@ -57,19 +57,19 @@ export class PremiumService {
     return this.http.delete(`/api/tenants/${id}`, {headers: headers});
   }
 
-  getExpenses(propertyId) {
+  getExpenses() {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
     });
 
-    return this.http.get(`/api/expenses/${propertyId}`, {headers: headers});
+    return this.http.get(`/api/expenses/user/${this.user.id}`, {headers: headers});
   }
 
   saveExpense(expense) {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`
     });
-
+    expense.user = this.user;
     return this.http.post(`/api/expenses/save`, expense, {headers: headers});
   }
 
