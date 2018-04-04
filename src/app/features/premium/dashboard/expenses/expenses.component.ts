@@ -69,7 +69,7 @@ export class ExpensesComponent implements OnInit {
     ]
     var labels = [];
     var costs = [];
-    this.expenses.map(e => labels.push(months[new Date(e.date).getMonth()]))
+    this.expenses.map(e => labels.push(new Date(e.date)));
     this.expenses.map(e => costs.push(e.cost));
 
     var chart = new Chart(document.getElementById('expensesLineChart'), {

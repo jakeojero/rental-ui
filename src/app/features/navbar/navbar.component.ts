@@ -33,10 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    window.localStorage.clear();
-    this.navService.updateUser(undefined);
-    this.alert.info('You are now logged out.', 5000, true);
-    this.router.navigate(['home']);
+    this.navService.logout();
   }
 
 }

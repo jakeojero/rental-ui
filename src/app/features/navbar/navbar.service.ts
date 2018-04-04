@@ -5,13 +5,16 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class NavbarService {
 
   private user = new BehaviorSubject<User>(undefined);
 
-  constructor(private http: HttpClient, private alert: AlertService) { }
+  constructor(private http: HttpClient,
+              private alert: AlertService,
+              private router: Router) { }
 
   getUser(): Observable<User> {
     return this.user.asObservable();
@@ -37,5 +40,18 @@ export class NavbarService {
        err => {this.alert.error('Error adding premium to user. Please contact us to add it manually', 10000, true);
     });
     this.user.next(u);
+  }
+
+  
+  logout() {
+    window.localStorage.clear();
+    this.updateUser(undefined);
+    this.alert.info('You are now logged out.', 5000, true);
+    this.router.navigate(['home']);
+  }
+
+  sessionEnded() {
+    window.localStorage.clear();
+    this.updateUser(undefined);
   }
 }

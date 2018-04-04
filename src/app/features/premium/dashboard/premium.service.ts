@@ -46,6 +46,7 @@ export class PremiumService {
     });
 
     tenant.user = this.user;
+    tenant.rent = +tenant.rent;
     return this.http.post(`/api/tenants/save`, tenant, {headers: headers});
   }
 

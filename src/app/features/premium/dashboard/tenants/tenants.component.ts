@@ -23,7 +23,8 @@ export class TenantsComponent implements OnInit {
                this.tenantForm = fb.group({
                   firstname: ['', Validators.required],
                   lastname: ['', Validators.required],
-                  property: ['', Validators.required]
+                  property: ['', Validators.required],
+                  rent: ['', Validators.required]
                });
   }
 

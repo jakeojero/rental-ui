@@ -36,6 +36,14 @@
                           </div>
                       </div>
                   </div>
+                  <div class="form-group row">
+                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                        <label for="gForm_1">Tenant Rent Price</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <input class="form-control" type="text" id="gForm_1" placeholder="Rent Amount" formControlName="rent">
+                    </div>
+                </div>
                   <button type="submit" class="btn btn-primary" (click)="saveTenant()">Add Tenant</button>
               </section>
           </form>
@@ -49,7 +57,7 @@
             <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12" *ngFor="let tenant of tenants">
                 <div class="card">
                     <div class="card-header">
-                        {{tenant.firstname}}, {{tenant.lastname}}
+                        {{tenant.firstname}}, {{tenant.lastname}} <span style="color: green">${{tenant.rent}}</span>
                     </div>
                     <div class="card-block">
                         <div class="card-title">
