@@ -18,7 +18,7 @@ export class TenantsComponent implements OnInit {
   constructor(private premiumService: PremiumService,
               @Inject(FormBuilder) fb: FormBuilder,
               private alert: AlertService,
-              private spinner: SpinnerService) { 
+              private spinner: SpinnerService) {
 
                this.tenantForm = fb.group({
                   firstname: ['', Validators.required],
@@ -50,10 +50,11 @@ export class TenantsComponent implements OnInit {
   saveTenant() {
     this.spinner.spin();
     this.premiumService.saveTenant(this.tenantForm.value).subscribe(
-      response => {
+      (response: any) => {
         this.spinner.hide();
         this.tenants.push(response);
         this.premiumService.getTenantsSubject().next(this.tenants);
+        this.alert.info(`${response.firstname} has been added.`, 5000, true);
         this.tenantForm.reset();
       },
       err => {

@@ -13,12 +13,14 @@ import { Chart } from 'chart.js';
 export class ExpensesComponent implements OnInit {
 
   addExpense: boolean;
+  chartMade = false;
 
   properties = [];
   expenses = [];
   tenants = [];
   revenue = 0;
   expenseTotal = 0;
+  chart;
   expensesForm: FormGroup;
   constructor(@Inject(FormBuilder) fb: FormBuilder,
               private premiumService: PremiumService,
@@ -46,6 +48,7 @@ export class ExpensesComponent implements OnInit {
       tenants => {
         this.spinner.hide();
         this.tenants = tenants;
+        this.revenue = 0;
         this.tenants.forEach(t => {
           this.revenue += t.rent;
         });
@@ -104,34 +107,41 @@ export class ExpensesComponent implements OnInit {
   }
 
   drawPie() {
-    const config = {
-      type: 'pie',
-      data: {
-        datasets: [{
-          data: [
-            this.revenue,
-            this.expenseTotal
-          ],
-          backgroundColor: [
-            '#2f9eed',
-            '#ed2f5e'
-          ],
-          label: 'Dataset 1'
-        }],
-        labels: [
-          'Revenue',
-          'Expenses'
-        ]
-      },
-      options: {
-        responsive: true
+    if (!!this.revenue && !!this.expenseTotal) {
+      const config = {
+        type: 'pie',
+        data: {
+          datasets: [{
+            data: [
+              this.revenue,
+              this.expenseTotal
+            ],
+            backgroundColor: [
+              '#2f9eed',
+              '#ed2f5e'
+            ],
+            label: 'Dataset 1'
+          }],
+          labels: [
+            'Revenue',
+            'Expenses'
+          ]
+        },
+        options: {
+          responsive: true
+        }
+      };
+      if (!this.chartMade) {
+        this.chart = new Chart(document.getElementById('revenueTotalPie'), config);
+        this.chartMade = true;
+      } else {
+        this.chart.update();
       }
-    };
-    const chart = new Chart(document.getElementById('revenueTotalPie'), config);
+    }
   }
 
   updateGraph() {
-      this.createChart();
+      // this.createChart();
       this.drawPie();
   }
 
@@ -140,10 +150,11 @@ export class ExpensesComponent implements OnInit {
     this.expensesForm.value.date = new Date(this.expensesForm.value.date);
 
     this.premiumService.saveExpense(this.expensesForm.value).subscribe(
-      response => {
+      (response: any) => {
         this.expenses.push(response);
         this.premiumService.getExpensesSubject().next(this.expenses);
         this.expensesForm.reset();
+        this.alert.info(`Expense added for ${response.cost}`);
         this.updateGraph();
       },
       err => {

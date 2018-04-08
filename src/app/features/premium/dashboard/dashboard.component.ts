@@ -6,6 +6,7 @@ import { PremiumService } from './premium.service';
 import { Property } from '../../../core/shared/models/Property';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,32 +25,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.spin();
-    this.premiumService.getProperties().subscribe(
-      response => {
-        this.spinner.hide();
-        console.log('props:');
-        console.log(response);
-        this.premiumService.getPropertiesSubject().next(<Property[]>response);
-      },
-      err => this.authFailed(err)
-    );
+    const properties = this.premiumService.getProperties();
+    const expenses = this.premiumService.getExpenses();
+    const tenants = this.premiumService.getTenants();
 
-    this.premiumService.getExpenses().subscribe(
-      response => {
+    forkJoin([properties, expenses, tenants]).subscribe(
+      results => {
         this.spinner.hide();
-        console.log('expenses:');
-        console.log(response);
-        this.premiumService.getExpensesSubject().next(response);
-      },
-      err => this.authFailed(err)
-    );
-
-    this.premiumService.getTenants().subscribe(
-      response => {
-        this.spinner.hide();
-        console.log('tenants:');
-        console.log(response);
-        this.premiumService.getTenantsSubject().next(response);
+        this.premiumService.getPropertiesSubject().next(<Property[]>results[0]);
+        this.premiumService.getExpensesSubject().next(results[1]);
+        this.premiumService.getTenantsSubject().next(results[2]);
       },
       err => this.authFailed(err)
     );
@@ -62,6 +47,8 @@ export class DashboardComponent implements OnInit {
         this.alert.error('Your session has ended. Please Log in.', 7500, true);
         this.navbar.sessionEnded();
         this.router.navigate(['login']);
+      } else {
+        this.alert.error('There was an error retrieving details on your account. Please Try again.', 5000, true);
       }
   }
 
