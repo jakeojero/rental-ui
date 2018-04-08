@@ -1,46 +1,45 @@
-
 <div class="row">
-  <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" routerLink="/landlord-dashboard">
-      <clr-icon shape="home"></clr-icon>
-      Dashboard Home
-  </button>
-  <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" (click)="addExpense = !addExpense">
-    <clr-icon shape="plus"></clr-icon>
-    Add Expense
-</button>
+    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" routerLink="/landlord-dashboard">
+        <clr-icon shape="home"></clr-icon>
+        Dashboard Home
+    </button>
+    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" (click)="addExpense = !addExpense">
+        <clr-icon shape="plus"></clr-icon>
+        Add Expense
+    </button>
 </div>
 
 <div class="row">
 
-<div class="col-xs-12">
+    <div class="col-xs-12">
 
-<form [formGroup]="expensesForm" *ngIf="addExpense">
-        <section class="form-block">
-            <label>Create Expense</label>
-            <div class="form-group row">
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <label for="gForm_1">Expense</label>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <input class="form-control" type="text" id="gForm_1" placeholder="Expense Name" formControlName="name">
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <input formControlName="date" class="form-control" type="date" id="gForm_2" clrDate>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <label for="gForm_3">Property</label>
-                </div>
-                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
-                    <div class="select form-control">
-                        <select id="gForm_3" formControlName="property">
-                            <option [ngValue]="property" *ngFor="let property of properties">{{property.title}}</option>
-                        </select>
+        <form [formGroup]="expensesForm" *ngIf="addExpense">
+            <section class="form-block">
+                <label>Create Expense</label>
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                        <label for="gForm_1">Expense</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <input class="form-control" type="text" id="gForm_1" placeholder="Expense Name" formControlName="name">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <input formControlName="date" class="form-control" type="date" id="gForm_2" clrDate>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                        <label for="gForm_3">Property</label>
+                    </div>
+                    <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
+                        <div class="select form-control">
+                            <select id="gForm_3" formControlName="property">
+                                <option [ngValue]="property" *ngFor="let property of properties">{{property.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                         <label for="gForm_4">Cost $</label>
                     </div>
@@ -48,22 +47,53 @@
                         <input formControlName="cost" class="form-control" type="text" id="gForm_4" placeholder="Cost">
                     </div>
                 </div>
-            <button type="submit" class="btn btn-primary" (click)="saveExpense()">Add Expense</button>
-        </section>
-    </form>
-    
-    <div class="col-lg-6 col-xs-12">
-        <div class="card">
-            <div class="card-header">
-                Expenses
+                <button type="submit" class="btn btn-primary" (click)="saveExpense()">Add Expense</button>
+            </section>
+        </form>
+
+
+
+        <div class="row">
+            <div class="col-lg-3 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        Revenue
+                    </div>
+                    <div class="card-block">
+                        <div class="card-title" style="color: green">
+                                ${{revenue}}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-block">
-                <div class="card-text">
-                    <canvas id="expensesLineChart"></canvas>
+            <div class="col-lg-3 col-xs-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Expenses
+                        </div>
+                        <div class="card-block">
+                            <div class="card-title" style="color: red">
+                                    ${{expenseTotal}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        Revenue Totals v.s Expenses
+                    </div>
+                    <div class="card-block">
+                        <div class="card-text">
+                            <canvas id="revenueTotalPie"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-</div>
-    

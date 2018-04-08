@@ -25,7 +25,7 @@ export class PropertiesComponent implements OnInit {
       properties => {
         this.properties = properties;
       }
-    )
+    );
 
   }
 

@@ -16,18 +16,21 @@ export class ExpensesComponent implements OnInit {
 
   properties = [];
   expenses = [];
+  tenants = [];
+  revenue = 0;
+  expenseTotal = 0;
   expensesForm: FormGroup;
   constructor(@Inject(FormBuilder) fb: FormBuilder,
               private premiumService: PremiumService,
               private alert: AlertService,
-              private spinner: SpinnerService) { 
+              private spinner: SpinnerService) {
 
     this.expensesForm = fb.group({
       name: ['', Validators.required],
       date: ['', Validators.required],
       property: ['', Validators.required],
       cost: ['', Validators.required]
-    })
+    });
 
   }
 
@@ -39,58 +42,97 @@ export class ExpensesComponent implements OnInit {
       }
     );
 
-    this.premiumService.getExpenses().subscribe(
-      (expenses: Array<any>) => {
+    this.premiumService.getTenants$().subscribe(
+      tenants => {
+        this.spinner.hide();
+        this.tenants = tenants;
+        this.tenants.forEach(t => {
+          this.revenue += t.rent;
+        });
+        this.updateGraph();
+      }
+    );
+
+    this.premiumService.getExpenses$().subscribe(
+      expenses => {
         this.spinner.hide();
         this.expenses = expenses;
+        this.expenseTotal = 0;
+        this.expenses.forEach(e => {
+          this.expenseTotal += e.cost;
+        });
         this.updateGraph();
-      },
-      err => {
-        this.spinner.hide();
-        this.alert.error('Error retrieving expenses for this user', 5000, true);
       }
-    )
+    );
   }
 
   createChart() {
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
-    var labels = [];
-    var costs = [];
-    this.expenses.map(e => labels.push(new Date(e.date)));
-    this.expenses.map(e => costs.push(e.cost));
+    // var months = [
+    //   "January",
+    //   "February",
+    //   "March",
+    //   "April",
+    //   "May",
+    //   "June",
+    //   "July",
+    //   "August",
+    //   "September",
+    //   "October",
+    //   "November",
+    //   "December"
+    // ]
+    // var labels = [];
+    // var costs = [];
+    // this.expenses.map(e => labels.push(new Date(e.date)));
+    // this.expenses.map(e => costs.push(e.cost));
 
-    var chart = new Chart(document.getElementById('expensesLineChart'), {
-      type: 'line',
+    // var chart = new Chart(document.getElementById('expensesLineChart'), {
+    //   type: 'line',
+    //   data: {
+    //       labels: [...labels],
+    //       datasets: [{
+    //           borderColor: 'rgb(255, 99, 132)',
+    //           data: [...costs],
+    //       }]
+    //   },
+    //   options: {
+    //     legend: {
+    //       display: false
+    //     }
+    //   }
+    // })
+  }
+
+  drawPie() {
+    const config = {
+      type: 'pie',
       data: {
-          labels: [...labels],
-          datasets: [{
-              borderColor: 'rgb(255, 99, 132)',
-              data: [...costs],
-          }]
+        datasets: [{
+          data: [
+            this.revenue,
+            this.expenseTotal
+          ],
+          backgroundColor: [
+            '#2f9eed',
+            '#ed2f5e'
+          ],
+          label: 'Dataset 1'
+        }],
+        labels: [
+          'Revenue',
+          'Expenses'
+        ]
       },
       options: {
-        legend: {
-          display: false
-        }
+        responsive: true
       }
-    })
+    };
+    const chart = new Chart(document.getElementById('revenueTotalPie'), config);
   }
 
   updateGraph() {
       this.createChart();
+      this.drawPie();
   }
 
   saveExpense() {
@@ -100,13 +142,14 @@ export class ExpensesComponent implements OnInit {
     this.premiumService.saveExpense(this.expensesForm.value).subscribe(
       response => {
         this.expenses.push(response);
+        this.premiumService.getExpensesSubject().next(this.expenses);
         this.expensesForm.reset();
-        this.createChart();
+        this.updateGraph();
       },
       err => {
         this.alert.error('Error saving expense.', 5000, true);
       }
-    )
+    );
   }
 
 }

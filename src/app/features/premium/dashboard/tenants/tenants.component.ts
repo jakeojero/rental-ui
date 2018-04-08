@@ -35,17 +35,16 @@ export class TenantsComponent implements OnInit {
         this.properties = properties;
       }
     );
-    
-    this.premiumService.getTenants().subscribe(
+
+    this.premiumService.getTenants$().subscribe(
       (response: Array<any>) => {
         this.spinner.hide();
         this.tenants = [...response];
-
       },
       err => {
         this.alert.error('There was an error retrieving tenants', 5000, true);
       }
-    )
+    );
   }
 
   saveTenant() {
@@ -54,13 +53,14 @@ export class TenantsComponent implements OnInit {
       response => {
         this.spinner.hide();
         this.tenants.push(response);
+        this.premiumService.getTenantsSubject().next(this.tenants);
         this.tenantForm.reset();
       },
       err => {
         this.spinner.hide();
         this.alert.error('There was an error saving that tenant! Please try again.', 5000, false);
       }
-    )
+    );
   }
 
   deleteTenant(tenant) {
@@ -70,6 +70,7 @@ export class TenantsComponent implements OnInit {
         this.spinner.hide();
         this.alert.info(`Deleted ${tenant.firstname}`, 5000, true);
         this.tenants.splice(this.tenants.indexOf(tenant), 1);
+        this.premiumService.getTenantsSubject().next(this.tenants);
       },
       error => {
         this.spinner.hide();

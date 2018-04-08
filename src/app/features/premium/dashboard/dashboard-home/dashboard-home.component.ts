@@ -20,22 +20,6 @@ export class DashboardHomeComponent implements OnInit {
               private router: Router,
               private navbar: NavbarService) { }
 
-  ngOnInit() {
-    this.spinner.spin();
-    this.premiumService.getProperties().subscribe(
-    (properties: Property[]) => {
-      this.premiumService.getPropertiesSubject().next(properties);
-      this.spinner.hide();
-    },
-    (error: HttpErrorResponse) => {
-      this.spinner.hide();
-      if(error.status === 401) {
-        this.alert.error('Your session has ended. Please Log in.', 7500, true);
-        this.navbar.sessionEnded();
-        this.router.navigate(['login']);
-      }
-    })
-    
-  }
+  ngOnInit() {}
 
 }
