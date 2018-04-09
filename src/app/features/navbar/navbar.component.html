@@ -27,6 +27,7 @@
         <a *ngIf="!user" routerLink="register" clrDropdownItem>Register</a>        
         <a *ngIf="user" routerLink="propertyEdit" clrDropdownItem>Add New Listing</a>
         <a *ngIf="user && !user.isPremium" routerLink="premium-signup" clrDropdownItem>Sign Up For Premium</a>
+        <a routerLink="forgot-password" clrDropdownItem>Update password</a>
         <a *ngIf="user" clrDropdownItem (click)="logout()">Log out</a> 
       </clr-dropdown-menu>
       
