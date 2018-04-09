@@ -57,6 +57,7 @@ export class ChangePasswordComponent implements OnInit {
     this.spinner.spin();
     this.passwordService.validateToken(this.token).subscribe(
       response => {
+        this.spinner.hide();
         if (this.changePasswordForm.dirty && this.changePasswordForm.valid) {
           const p1 = this.changePasswordForm.get('password1').value;
           const p2 = this.changePasswordForm.get('password2').value;
@@ -70,6 +71,7 @@ export class ChangePasswordComponent implements OnInit {
         }
       },
       err => {
+        this.spinner.hide();
         this.alert.error(err.error.message !== undefined ? err.error.message : 'Invalid Token', 5000, false);
       }
     );

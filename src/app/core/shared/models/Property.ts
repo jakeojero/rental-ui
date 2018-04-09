@@ -5,6 +5,7 @@ export class Property {
   title: string;
   rooms: number;
   price: number;
+  user: any;
   notes: string[] = [];
   locator: Locator;
 }
