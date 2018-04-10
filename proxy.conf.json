@@ -36,7 +36,13 @@
     "changeOrigin": true
   },
   "/api/premium/**": {
-    "target": "http://localhost:8080",
+    "target": "http://rental.jakeojero.me",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/**": {
+    "target": "http://rental.jakeojero.me",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
