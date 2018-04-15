@@ -18,10 +18,10 @@ import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './alert/alert.component';
-import {AlertService} from './alert/alert.service';
+import { AlertService } from './alert/alert.service';
 import { PropertylistService } from './propertylist/propertylist.service';
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
-import {PropertyPipe} from './propertylist/PropertyPipe';
+import { PropertyPipe } from './propertylist/PropertyPipe';
 import { EditpropertyComponent } from './editproperty/editproperty.component';
 import { EditpropertyService } from './editproperty/editproperty.service';
 import { NavbarService } from './navbar/navbar.service';
@@ -36,6 +36,9 @@ import { PropertiesComponent } from './premium/dashboard/properties/properties.c
 import { TenantsComponent } from './premium/dashboard/tenants/tenants.component';
 import { DashboardHomeComponent } from './premium/dashboard/dashboard-home/dashboard-home.component';
 import { PremiumService } from './premium/dashboard/premium.service';
+import { UserComponent } from './user/user.component';
+import { UserlistComponent } from './userlist/userlist.component';
+import { UserlistService } from './userlist/userlist.service';
 
 
 @NgModule({
@@ -69,6 +72,8 @@ import { PremiumService } from './premium/dashboard/premium.service';
     PropertiesComponent,
     TenantsComponent,
     DashboardHomeComponent,
+    UserComponent,
+    UserlistComponent,
 
   ],
   exports: [
@@ -91,7 +96,8 @@ import { PremiumService } from './premium/dashboard/premium.service';
     NavbarService,
     PasswordService,
     SpinnerService,
-    PremiumService
+    PremiumService,
+    UserlistService
   ]
 })
 export class FeaturesModule { }
