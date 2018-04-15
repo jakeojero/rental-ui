@@ -16,18 +16,26 @@ export class PropertyPipe implements PipeTransform {
     if (searchBy && search && search.length > 0) {
       switch (searchBy) {
         case 'Address':
-          return properties.filter(property => property.locator.address.indexOf(search) >= 0);
+          properties.filter(property => property.locator.address.indexOf(search) >= 0);
+          break;
         case 'Province':
-          return properties.filter(property => property.locator.province.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+          properties.filter(property => property.locator.province.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+          break;
         case 'Rooms':
-          return properties.filter(property => property.rooms === Number(search));
+          properties.filter(property => property.rooms === Number(search));
+          break;
         case 'Title':
-          return properties.filter(property => property.title.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+          properties.filter(property => property.title.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+          break;
         case 'City':
-          return properties.filter(property => property.locator.city.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+          properties.filter(property => property.locator.city.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+          break;
         case 'Price':
-          return properties.filter(property => property.price <= Number(search));
+          properties.filter(property => property.price <= Number(search));
+          break;
       }
+
+      return properties.sort((propertyA, propertyB) => (+propertyB.isPromoted) - (+!propertyB.isPromoted));
     } else {
       return properties;
     }

@@ -1,12 +1,12 @@
 <a class="card clickable">
-    <div class="card-img">
-        <img src="../../../assets/43.jpg" alt="..." width="250px" height="250px" />
-    </div>
-    <div class="card-block">
-        <h4 class="card-title">{{property.title}}</h4>
-        <p class="card-text">
-        {{ property.locator.address }}
-        </p>
-    </div>
+  <div class="card-img" [ngStyle]="property.isPromoted ?{'border-color':'#f4b942', 'border-thickness':'5'}:{'border-color':'black', 'border-thickness':'2'}">
+    <!-- Just placeholder styles to test and make sure sorting is done properly -->
+    <img src="../../../assets/43.jpg" alt="..." width="250px" height="250px" />
+  </div>
+  <div class="card-block">
+    <h4 class="card-title">{{property.title}}</h4>
+    <p class="card-text">
+      {{ property.locator.address }}
+    </p>
+  </div>
 </a>
-

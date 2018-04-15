@@ -12,7 +12,7 @@ import { SpinnerService } from '../../../spinner/spinner.service';
 })
 export class PropertiesComponent implements OnInit {
 
-  openModal: boolean = false;
+  openModal = false;
   properties = <any>[];
   selectedProperty;
   constructor(private premiumService: PremiumService,
@@ -33,7 +33,7 @@ export class PropertiesComponent implements OnInit {
     this.selectedProperty = property;
     this.openModal = true;
   }
-  
+
   onUpdate(event) {
     console.log(event);
   }

@@ -6,6 +6,7 @@ export class Property {
   rooms: number;
   price: number;
   user: any;
+  isPromoted: boolean;
   notes: string[] = [];
   locator: Locator;
 }
