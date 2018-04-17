@@ -12,11 +12,12 @@ import { LoginComponent } from '../features/login/login.component';
 import { RegisterComponent } from '../features/register/register.component';
 import { PropertylistComponent } from '../features/propertylist/propertylist.component';
 import { PropertydetailsComponent } from '../features/propertydetails/propertydetails.component';
-import {AuthenticationGuard} from '../features/guards/AuthenticationGuard';
+import { AuthenticationGuard } from '../features/guards/AuthenticationGuard';
 import { EditpropertyComponent } from '../features/editproperty/editproperty.component';
 import { SignupComponent } from '../features/premium/signup/signup.component';
 import { PropertiesComponent } from '../features/premium/dashboard/properties/properties.component';
 import { PremiumGuard } from '../core/shared/gaurds/premium-guard';
+import { PaymentComponent } from '../core/shared/components/payment/payment.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,8 +28,10 @@ const appRoutes: Routes = [
   { path: 'propertyList', component: PropertylistComponent },
   { path: 'propertyDetail', component: PropertydetailsComponent },
   { path: 'propertyEdit', component: EditpropertyComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'premium-signup', component: SignupComponent },
-  { path: 'landlord-dashboard', component: DashboardComponent, canActivate: [PremiumGuard],
+  {
+    path: 'landlord-dashboard', component: DashboardComponent, canActivate: [PremiumGuard],
     children: [
       { path: '', component: DashboardHomeComponent },
       { path: 'expenses', component: ExpensesComponent },

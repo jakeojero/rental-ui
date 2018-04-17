@@ -91,7 +91,7 @@ export class PremiumService {
   getTenantsSubject() {
     return this.tenants;
   }
-  
+
   getListOfProperties() {
     return this.properties.asObservable();
   }

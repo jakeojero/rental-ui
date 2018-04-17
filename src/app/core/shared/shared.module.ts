@@ -20,6 +20,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { ClarityModule } from '@clr/angular';
 import { PremiumGuard } from './gaurds/premium-guard';
 import { TextEntryComponent } from './components/text-entry/text-entry.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,7 @@ import { TextEntryComponent } from './components/text-entry/text-entry.component
   providers: [
     PremiumGuard
   ],
-  declarations: [TextEntryComponent],
+  declarations: [TextEntryComponent, PaymentComponent],
   exports: [CommonModule,
     MatInputModule,
     MatButtonModule,

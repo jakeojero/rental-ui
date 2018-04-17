@@ -1,11 +1,13 @@
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
-import { AlertService } from './../../alert/alert.service';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { AlertService } from './../../../../features/alert/alert.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NavbarService } from '../../navbar/navbar.service';
-import { SpinnerService } from '../../spinner/spinner.service';
-declare var Stripe: any;
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { NavbarService } from './../../../../features/navbar/navbar.service';
+import { SpinnerService } from './../../../../features/spinner/spinner.service';
+import { Property } from '../../models/Property';
+import { EditpropertyService } from '../../../../features/editproperty/editproperty.service';
+import { User } from '../../models/User';
 
 function _window(): any {
   // return the global native browser window object
@@ -13,21 +15,40 @@ function _window(): any {
 }
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.scss']
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class PaymentComponent implements OnInit {
 
+  purchase: string;
+  price: number;
+  property: Property;
   window;
-  user;
+  user: User;
   stripe: any;
   elements: any;
   constructor(private http: HttpClient,
     private alert: AlertService,
     private router: Router,
     private navbar: NavbarService,
-    private spinner: SpinnerService) { }
+    private spinner: SpinnerService,
+    private route: ActivatedRoute,
+    private propertyService: EditpropertyService) {
+
+    this.route.queryParams.subscribe(params => {
+      this.purchase = params['purchase'];
+    });
+
+    this.navbar.getUser().subscribe(user => {
+      this.user = user;
+    });
+
+    // TODO: Find out how to get property
+    // this.propertyService.getProperty(this.user.username).subscribe(property => {
+    //   this.property = property;
+    // });
+  }
 
   ngOnInit() {
     const window = _window();
@@ -85,11 +106,6 @@ export class SignupComponent implements OnInit, OnDestroy {
         this.chargeCard(token);
       }
     });
-
-
-  }
-
-  ngOnDestroy() {
   }
 
   chargeCard(token) {
@@ -97,26 +113,45 @@ export class SignupComponent implements OnInit, OnDestroy {
     const headers = new HttpHeaders({
       'X-AUTH-TOKEN': `${window.localStorage.getItem('token')}`,
       'token': `${token.id}`,
-      'amount': `${4.99}`
+      'amount': `${this.price}`
     });
 
-    this.http.post('/payment/charge', {}, { headers: headers })
-      .subscribe(resp => this.onPaymentComplete(resp),
-        err => {
-          this.spinner.hide();
-          if (err.error.message) {
-            this.alert.error(err.error.message, 5000, false);
-          } else {
-            this.alert.error('An error occured', 5000, false);
-          }
+    if (this.purchase === 'premium') {
+      this.http.post('/payment/charge', {}, { headers: headers })
+        .subscribe(resp => this.onPaymentComplete(resp),
+          err => {
+            this.spinner.hide();
+            if (err.error.message) {
+              this.alert.error(err.error.message, 5000, false);
+            } else {
+              this.alert.error('An error occured', 5000, false);
+            }
 
-        });
+          });
+    } else if (this.purchase === 'promoted') { // TODO: Get API endpoint for promoted proeprties
+      this.http.post('/payment/charge', {}, { headers: headers })
+        .subscribe(resp => this.onPaymentComplete(resp),
+          err => {
+            this.spinner.hide();
+            if (err.error.message) {
+              this.alert.error(err.error.message, 5000, false);
+            } else {
+              this.alert.error('An error occured', 5000, false);
+            }
+
+          });
+    }
   }
 
   onPaymentComplete(res) {
     this.spinner.hide();
     this.alert.info(res.outcome.sellerMessage, 5000, true);
-    this.navbar.addPremiumToUser(true);
+    if (this.purchase === 'premium') {
+      this.navbar.addPremiumToUser(true);
+    } else if (this.purchase === 'promoted') {
+      this.property.isPromoted = true;
+      this.propertyService.updateProperty(this.property, this.user.username);
+    }
     this.router.navigate(['/home']);
   }
 

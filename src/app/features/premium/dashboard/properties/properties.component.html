@@ -1,28 +1,29 @@
-
 <div class="row">
-    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" routerLink="/landlord-dashboard">
-        <clr-icon shape="home"></clr-icon>
-        Dashboard Home
-    </button>
-    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" routerLink="/propertyEdit">
-        <clr-icon shape="plus"></clr-icon>
-        Add New Listing
-    </button>
+  <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" routerLink="/landlord-dashboard">
+    <clr-icon shape="home"></clr-icon>
+    Dashboard Home
+  </button>
+  <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" routerLink="/propertyEdit">
+    <clr-icon shape="plus"></clr-icon>
+    Add New Listing
+  </button>
 </div>
 
 
 <div class="row">
-    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" *ngFor="let property of properties">
-        <app-property (click)="openDetails(property)" [property]="property"></app-property>
-    </div>
-    <!-- NgIf property isn't premium, show button to bring up page/modal/dialog to purchase promoted listing.
-         Else: Disabled button with label indicating Property is promoted -->
-</div>
+  <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" *ngFor="let property of properties">
+    <app-property (click)="openDetails(property)" [property]="property"></app-property>
+    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" (click)="promoteProperty(property)">
+      <clr-icon shape="bolt"></clr-icon>
+      Promote Property
+    </button>
+  </div>
 
+</div>
 
 <clr-modal [(clrModalOpen)]="openModal" [clrModalSize]="'lg'">
-    <h3 class="modal-title">Edit Property</h3>
-    <div class="modal-body">
-        <app-propertydetails *ngIf="selectedProperty" [property]="selectedProperty" [editable]="true" (onSubmit)="onUpdate($event)"></app-propertydetails>
-    </div>
+  <h3 class="modal-title">Edit Property</h3>
+  <div class="modal-body">
+    <app-propertydetails *ngIf="selectedProperty" [property]="selectedProperty" [editable]="true" (onSubmit)="onUpdate($event)"></app-propertydetails>
+  </div>
 </clr-modal>
