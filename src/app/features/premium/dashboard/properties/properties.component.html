@@ -13,9 +13,12 @@
 <div class="row">
   <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" *ngFor="let property of properties">
     <app-property (click)="openDetails(property)" [property]="property"></app-property>
-    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12" (click)="promoteProperty(property)">
+    <button class="btn col-lg-4 col-md-8 col-sm-8 col-xs-12"
+    (click)="promoteProperty(property)"
+    [disabled]="property.IsPromoted">
       <clr-icon shape="bolt"></clr-icon>
-      Promote Property
+      <label *ngIf="!property.IsPromoted">Promote Property</label>
+      <label *ngIf="property.IsPromoted">Property Promoted</label>
     </button>
   </div>
 
