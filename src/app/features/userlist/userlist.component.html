@@ -11,7 +11,7 @@
 
 
 <clr-modal [(clrModalOpen)]="openModal" [clrModalSize]="'lg'">
-    <h3 class="modal-title">{{selectedUser?.title}}</h3>
+    <h3 class="modal-title">{{selectedUser?.username}}</h3>
     <div class="modal-body">
         <app-user *ngIf="selectedUser" [user]="selectedUser"></app-user>
     </div>
