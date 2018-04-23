@@ -39,6 +39,7 @@ import { PremiumService } from './premium/dashboard/premium.service';
 import { UserComponent } from './user/user.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { UserlistService } from './userlist/userlist.service';
+import { UserPipe } from './userlist/UserPipe';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { UserlistService } from './userlist/userlist.service';
     RegisterComponent,
     AlertComponent,
     PropertyPipe,
+    UserPipe,
     SpinnerComponent
   ],
   providers: [
