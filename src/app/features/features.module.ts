@@ -63,6 +63,7 @@ import { UserPipe } from './userlist/UserPipe';
     PropertydetailsComponent,
     AlertComponent,
     PropertyPipe,
+    UserPipe,
     EditpropertyComponent,
     SignupComponent,
     DashboardComponent,
