@@ -18,6 +18,8 @@ import { SignupComponent } from '../features/premium/signup/signup.component';
 import { PropertiesComponent } from '../features/premium/dashboard/properties/properties.component';
 import { PremiumGuard } from '../core/shared/gaurds/premium-guard';
 import { PaymentComponent } from '../core/shared/components/payment/payment.component';
+import { UserlistComponent } from '../features/userlist/userlist.component';
+import { UserComponent } from '../features/user/user.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,6 +32,8 @@ const appRoutes: Routes = [
   { path: 'propertyEdit', component: EditpropertyComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'premium-signup', component: SignupComponent },
+  {path: 'user', component: UserComponent},
+  {path: 'userList', component: UserlistComponent},
   {
     path: 'landlord-dashboard', component: DashboardComponent, canActivate: [PremiumGuard],
     children: [
